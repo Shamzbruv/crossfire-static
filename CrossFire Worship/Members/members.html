@@ -1,0 +1,336 @@
+<!DOCTYPE html><html lang='en'><head><title>Members - Crossfire Worship Center</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <style>
+    :root { --color-primary:#0f2c59; --color-secondary:#f39c12; }
+    .font-serif{font-family:'Cormorant Garamond',serif;}
+    .font-sans{font-family:'Lato',sans-serif;}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1rem;border-radius:9999px;font-weight:700}
+    .btn-outline{border:1px solid #d1d5db;color:var(--color-primary);background:#fff}
+    .btn-primary{background:var(--color-secondary);color:#fff}
+    .nav-link{padding:.5rem .75rem;border-radius:.5rem}
+    .nav-link:hover{background:#f3f4f6}
+    .card{border-radius:1rem;border:1px solid #e5e7eb;background:#fff}
+    .tile{display:flex;align-items:center;gap:.9rem;padding:1rem;border-radius:1rem;border:1px solid #e5e7eb;background:#fff}
+    .tile:hover{box-shadow:0 8px 28px rgba(0,0,0,.07); transform: translateY(-1px); transition: all .2s}
+    .muted{color:#6b7280}
+    .kicker{letter-spacing:.15em;text-transform:uppercase;font-weight:700;font-size:.75rem;color:#6b7280}
+  
+/* --- Site-wide mobile polish (Members area) --- */
+@media (max-width: 640px){
+  .mobile-pad { padding-left: 1rem; padding-right: 1rem; }
+  .hero-tight { min-height: 60vh; }
+  .mobile-leading { line-height: 1.35; }
+  .mobile-tap a, .mobile-tap button { min-height: 44px; display:inline-flex; align-items:center; }
+  .grid-auto-xs { grid-template-columns: repeat(1, minmax(0,1fr)); }
+}
+/* Improve sticky headers visibility on scroll */
+.sticky\:shadow-when-scrolled{ box-shadow: 0 1px 0 rgba(17,24,39,.06); }
+/* Better cards on dense screens */
+.card{ border-radius:1rem; border:1px solid #e5e7eb; background:#fff }
+.card-sm{ padding: .875rem }
+img[loading="lazy"]{ content-visibility:auto }
+
+</style>
+</head><body class='font-sans text-gray-800 bg-gray-50'>
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b">
+  <div class="container mx-auto px-4 h-16 flex items-center justify-between">
+    <a href="../index.html#home" class="flex items-center gap-3 shrink-0">
+      <img src="https://crossfireworshipcenter.org/wp-content/uploads/2023/04/Church-Of-God-Logo-58x63.png" alt="logo" class="h-8 w-auto" loading="lazy">
+      <span class="font-extrabold text-[color:var(--color-primary)]">Crossfire Worship Center</span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden lg:flex items-center gap-1 text-[color:var(--color-primary)] font-semibold">
+      <a href="../index.html#home" class="nav-link">Home</a>
+
+      <div class="relative group">
+        <button class="nav-link inline-flex items-center gap-1">About
+          <i class="fa-solid fa-chevron-down text-xs"></i>
+        </button>
+        <div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition pointer-events-auto absolute left-0 mt-2 w-56 rounded-xl border bg-white shadow-lg p-2">
+          <a class="block px-3 py-2 rounded-lg hover:bg-blue-50" href="../index.html#about">Who We Are</a>
+          <a class="block px-3 py-2 rounded-lg hover:bg-blue-50" href="../index.html#ministries">Ministries</a>
+          <a class="block px-3 py-2 rounded-lg hover:bg-blue-50" href="../index.html#staff">Pastoral Staff</a>
+          <a class="block px-3 py-2 rounded-lg hover:bg-blue-50" href="declaration_of_faith.html">Declaration of Faith</a>
+        </div>
+      </div>
+
+      <a href="../index.html#sermons" class="nav-link">Sermons</a>
+      <a href="../index.html#events" class="nav-link">Events</a>
+      <a href="../index.html#testimonials" class="nav-link">Testimonials</a>
+      <a href="../index.html#visitor" class="nav-link">Visitor Info</a>
+      <a href="../index.html#resources" class="nav-link">Resources</a>
+    </nav>
+
+    <div class="hidden lg:flex items-center gap-3">
+      <a class="btn-outline text-sm" href="members.html">Members</a>
+      <a class="btn btn-primary text-sm" href="../index.html#giving"><i class="fa-solid fa-heart"></i><span>Give</span></a>
+    </div>
+
+    <!-- Mobile -->
+    <button id="hamburger" class="lg:hidden p-2 rounded-md border text-[color:var(--color-primary)]">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+
+  <!-- Mobile Drawer -->
+  <div id="mobileMenu" class="mobile-tap lg:hidden hidden border-t bg-white">
+    <div class="container mx-auto px-4 py-4 grid gap-3">
+      <a href="../index.html#home" class="py-2">Home</a>
+      <a href="../index.html#about" class="py-2">Who We Are</a>
+      <a href="../index.html#ministries" class="py-2">Ministries</a>
+      <a href="../index.html#staff" class="py-2">Pastoral Staff</a>
+      <a href="declaration_of_faith.html" class="py-2">Declaration of Faith</a>
+      <a href="../index.html#sermons" class="py-2">Sermons</a>
+      <a href="../index.html#events" class="py-2">Events</a>
+      <a href="../index.html#testimonials" class="py-2">Testimonials</a>
+      <a href="../index.html#visitor" class="py-2">Visitor Info</a>
+      <a href="../index.html#resources" class="py-2">Resources</a>
+      <div class="h-px bg-gray-200 my-2"></div>
+      <a href="members.html" class="py-2">Members</a>
+      <a href="../index.html#giving" class="py-2">Give</a>
+    </div>
+  </div>
+  <script>
+    const hb = document.getElementById('hamburger');
+    const mm = document.getElementById('mobileMenu');
+    hb?.addEventListener('click', () => mm.classList.toggle('hidden'));
+  </script>
+</header>
+<main>
+  <section class="bg-gray-50">
+    <div class="container mx-auto px-4 py-10 md:py-12 md:py-16 text-center">
+      <p class="kicker">Members</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-[color:var(--color-primary)]">Sign in to continue</h1>
+      <p class="muted mt-3 max-w-2xl mx-auto">Create a free account or sign in to access the members area.</p>
+    </div>
+  </section>
+
+  <section class="pb-20">
+    <div class="container mx-auto px-4 grid md:grid-cols-2 gap-8 max-w-5xl">
+      <div class="card p-7">
+        <h2 class="text-xl font-bold text-[color:var(--color-primary)]">Sign In</h2>
+        <div class="mt-5 space-y-4">
+          <input id="signinEmail" type="email" class="w-full border rounded-xl p-3" placeholder="Email" autocomplete="username" required>
+          <input id="signinPassword" type="password" class="w-full border rounded-xl p-3" placeholder="Password" autocomplete="current-password" required>
+          <button id="btnSignIn" class="w-full inline-flex items-center justify-center gap-2 rounded-full bg-[color:var(--color-secondary)] text-white font-bold py-3">
+            <i class="fa-solid fa-right-to-bracket"></i> Sign In
+          </button>
+          <p id="signinMsg" class="text-sm text-red-600"></p>
+        </div>
+      </div>
+      <div class="card p-7">
+        <h2 class="text-xl font-bold text-[color:var(--color-primary)]">Create Account</h2>
+        <div class="mt-5 space-y-4">
+          <input id="signup-name" type="text" class="w-full border rounded-xl p-3" placeholder="Full Name" required>
+          <input id="signupEmail" type="email" class="w-full border rounded-xl p-3" placeholder="Email" autocomplete="email" required>
+          <input id="signupPassword" type="password" class="w-full border rounded-xl p-3" placeholder="Password (min 6 chars)" autocomplete="new-password" required>
+          <button id="btnSignUp" class="w-full inline-flex items-center justify-center gap-2 rounded-full border border-gray-300 text-[color:var(--color-primary)] font-bold py-3">
+            <i class="fa-solid fa-user-plus"></i> Create Account
+          </button>
+          <p id="signupMsg" class="text-sm text-red-600"></p>
+        </div>
+      </div>
+    
+      
+<div class="card p-7 md:col-span-2">
+        <h2 class="text-xl font-bold text-[color:var(--color-primary)]">Admin Access</h2>
+        
+<div class="mt-4 grid sm:grid-cols-2 gap-3">
+  <button id="openAdminSignIn" type="button" class="w-full inline-flex items-center justify-center gap-2 rounded-xl border border-gray-300 text-[color:var(--color-primary)] font-bold py-3">
+    <i class="fa-solid fa-right-to-bracket"></i> Admin Sign In
+  </button>
+  <button id="openAdminSignUp" type="button" class="w-full inline-flex items-center justify-center gap-2 rounded-xl border border-gray-300 text-[color:var(--color-primary)] font-bold py-3">
+    <i class="fa-solid fa-user-shield"></i> Create Admin Account
+  </button>
+</div>
+
+      </div>
+
+</div>
+    <p class="text-center text-sm muted mt-6"></p>
+  </section>
+
+  
+  <!-- Admin Sign In Modal -->
+  <div id="modalAdminSignIn" class="fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" data-close="modal"></div>
+    <div class="relative mx-auto mt-24 w-[92%] max-w-md bg-white rounded-2xl shadow-xl border">
+      <div class="px-6 py-4 border-b flex items-center justify-between">
+        <h3 class="text-lg font-bold text-[color:var(--color-primary)]">Admin Sign In</h3>
+        <button class="text-gray-500 hover:text-gray-700" data-close="modal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="adminSignInForm" class="p-6 space-y-4">
+        <input id="adminSignInEmail" type="email" class="w-full border rounded-xl p-3" placeholder="Admin Email" required>
+        <input id="adminSignInPassword" type="password" class="w-full border rounded-xl p-3" placeholder="Password" required>
+        <p id="adminSignInMsg" class="text-sm text-red-600"></p>
+        <div class="flex items-center justify-end gap-2 pt-2">
+          <button type="button" class="btn-outline px-4 py-2 rounded-full" data-close="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary px-4 py-2 rounded-full">Sign In</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Admin Sign Up Modal -->
+  <div id="modalAdminSignUp" class="fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" data-close="modal"></div>
+    <div class="relative mx-auto mt-20 w-[92%] max-w-md bg-white rounded-2xl shadow-xl border">
+      <div class="px-6 py-4 border-b flex items-center justify-between">
+        <h3 class="text-lg font-bold text-[color:var(--color-primary)]">Create Admin Account</h3>
+        <button class="text-gray-500 hover:text-gray-700" data-close="modal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="adminSignUpForm" class="p-6 space-y-4">
+        <input id="adminSignUpName" type="text" class="w-full border rounded-xl p-3" placeholder="Full Name" required>
+        <input id="adminSignUpEmail" type="email" class="w-full border rounded-xl p-3" placeholder="Admin Email" required>
+        <input id="adminSignUpPassword" type="password" class="w-full border rounded-xl p-3" placeholder="Password (min 6 chars)" minlength="6" required>
+        <p id="adminSignUpMsg" class="text-sm text-red-600"></p>
+        <div class="flex items-center justify-end gap-2 pt-2">
+          <button type="button" class="btn-outline px-4 py-2 rounded-full" data-close="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary px-4 py-2 rounded-full">Create Account</button>
+        </div>
+      </form>
+    </div>
+  </div>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCJVAU7S1rnADpXresR5BlqlfN-2V6XT5o",
+      authDomain: "crossfire-worship.firebaseapp.com",
+      projectId: "crossfire-worship",
+      storageBucket: "crossfire-worship.firebasestorage.app",
+      messagingSenderId: "939730668201",
+      appId: "1:939730668201:web:de04ce6ce5997481c4b7b8",
+      measurementId: "G-KEVELTC50T"
+    };
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    document.getElementById('btnSignIn')?.addEventListener('click', async () => {
+      const email = document.getElementById('signinEmail').value.trim();
+      const pass  = document.getElementById('signinPassword').value;
+      const msg   = document.getElementById('signinMsg'); msg.textContent = "";
+      try { 
+        await signInWithEmailAndPassword(auth, email, pass); 
+        window.location.href = "members_dashboard.html"; 
+      }
+      catch(e){ 
+        msg.textContent = (e.message || "Sign-in failed").replace("Firebase:", "").trim(); 
+      }
+    });
+
+    document.getElementById('btnSignUp')?.addEventListener('click', async () => {
+      const name = document.getElementById('signup-name').value.trim();
+      const email = document.getElementById('signupEmail').value.trim();
+      const pass  = document.getElementById('signupPassword').value;
+      const msg   = document.getElementById('signupMsg'); msg.textContent = "";
+      if (!name) {
+        msg.textContent = "Please enter your full name.";
+        return;
+      }
+      try { 
+        const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
+        const user = userCredential.user;
+        await setDoc(doc(db, 'users', user.uid), { name, email });
+        window.location.href = "members_dashboard.html"; 
+      }
+      catch(e){ 
+        msg.textContent = (e.message || "Sign-up failed").replace("Firebase:", "").trim(); 
+      }
+    });
+  </script>
+</main>
+<footer class="bg-gray-100 border-t mt-20">
+  <div class="container mx-auto px-4 py-10 grid md:grid-cols-3 gap-8 text-sm text-gray-600">
+    <div>
+      <div class="font-bold text-[color:var(--color-primary)]">Crossfire Worship Center</div>
+      <p class="mt-2">Loving God, Loving People.</p>
+    </div>
+    <div>
+      <div class="font-bold text-[color:var(--color-primary)]">Quick Links</div>
+      <div class="mt-2 grid grid-cols-2 gap-x-4 gap-y-2">
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#ministries">Ministries</a>
+        <a href="../index.html#sermons">Sermons</a>
+        <a href="../index.html#events">Events</a>
+        <a href="../index.html#resources">Resources</a>
+        <a href="declaration_of_faith.html">Declaration of Faith</a>
+      </div>
+    </div>
+    <div>
+      <div class="font-bold text-[color:var(--color-primary)]">Give</div>
+      <p class="mt-2">Partner with us in ministry.</p>
+      <a class="btn btn-primary mt-3" href="../index.html#giving"><i class="fa-solid fa-heart"></i> Give</a>
+    </div>
+  </div>
+  <div class="border-t">
+    <div class="container mx-auto px-4 py-6 text-center text-gray-600 text-xs">
+      &copy; <span id="year"></span> Crossfire Worship Center. All rights reserved.
+    </div>
+  </div>
+</footer>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+<script>
+  (function(){
+    const byId = (id) => document.getElementById(id);
+    const open = (id) => byId(id)?.classList.remove('hidden');
+    const close = (id) => byId(id)?.classList.add('hidden');
+
+    // Open buttons
+    document.getElementById('openAdminSignIn')?.addEventListener('click', () => open('modalAdminSignIn'));
+    document.getElementById('openAdminSignUp')?.addEventListener('click', () => open('modalAdminSignUp'));
+
+    // Close on overlay / X / Cancel
+    document.addEventListener('click', (e) => {
+      if (e.target && e.target.getAttribute('data-close') === 'modal'){
+        const m1 = byId('modalAdminSignIn'); const m2 = byId('modalAdminSignUp');
+        m1 && m1.classList.add('hidden'); m2 && m2.classList.add('hidden');
+      }
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape'){
+        close('modalAdminSignIn'); close('modalAdminSignUp');
+      }
+    });
+
+    // Handle Sign In (dummy client flow, redirects to admin console)
+    const signInForm = byId('adminSignInForm');
+    signInForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = byId('adminSignInEmail').value.trim();
+      const pass = byId('adminSignInPassword').value.trim();
+      const msg = byId('adminSignInMsg');
+      msg.textContent = '';
+      if (!email || !pass){ msg.textContent = 'Please enter email and password.'; return; }
+      // TODO: integrate real auth; for now just navigate.
+      window.location.href = 'members_admin.html';
+    });
+
+    // Handle Sign Up (dummy client flow)
+    const signUpForm = byId('adminSignUpForm');
+    signUpForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = byId('adminSignUpName').value.trim();
+      const email = byId('adminSignUpEmail').value.trim();
+      const pass = byId('adminSignUpPassword').value.trim();
+      const msg = byId('adminSignUpMsg');
+      msg.textContent = '';
+      if (!name || !email || !pass){ msg.textContent = 'Please fill in all fields.'; return; }
+      if (pass.length < 6){ msg.textContent = 'Password must be at least 6 characters.'; return; }
+      // TODO: integrate real admin creation; for now show success and go to console.
+      window.location.href = 'members_admin.html';
+    });
+  })();
+</script>
+</body></html>

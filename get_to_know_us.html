@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Crossfire Worship Center</title>
+    <!-- Tailwind + Icons + Fonts (CDNs) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --color-primary: #173262;
+            --color-secondary: #d09a2a;
+        }
+        
+        html, body { font-family: 'Inter', sans-serif; }
+        
+        .nav-scrolled { background: rgba(255,255,255,.92); backdrop-filter: blur(8px); box-shadow: 0 6px 24px rgba(0,0,0,.08); }
+        
+        .nav-link { padding: 12px 10px; border-radius: .6rem; }
+        .nav-link:hover, .nav-link:focus { color: var(--color-secondary); outline: none; }
+        .btn-primary { display:inline-flex; align-items:center; gap:.5rem; background: var(--color-secondary); color: white; padding: 10px 18px; border-radius: 9999px; font-weight: 700; box-shadow: 0 6px 16px rgba(208,154,42,.3); transition: all .24s ease; }
+        .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 10px 20px rgba(208,154,42,.34); }
+        .btn-outline { border:2px solid var(--color-secondary); color: var(--color-secondary); padding: 8px 16px; border-radius: 9999px; font-weight: 700; }
+        .btn-outline:hover { background: var(--color-secondary); color: white; }
+
+        .card { border-radius: 1rem; box-shadow: 0 10px 20px rgba(0,0,0,.06); transition: all .24s ease; background: white; }
+        .card:hover { transform: translateY(-3px); box-shadow: 0 14px 26px rgba(0,0,0,.1); }
+        
+        .leader-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--color-secondary);
+        }
+        
+        .timeline-item:after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 17px;
+            width: 2px;
+            height: calc(100% + 10px);
+            background: #e5e7eb;
+        }
+        
+        .timeline-item:last-child:after {
+            display: none;
+        }
+        
+        /* Celebration styles */
+        .celebration-badge {
+            background: linear-gradient(45deg, var(--color-secondary), #f5c542);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 12px rgba(208, 154, 42, 0.4);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .celebration-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .anniversary-count {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--color-secondary);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .years-label {
+            font-size: 1.2rem;
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+        
+        .milestone-card {
+            background: linear-gradient(135deg, var(--color-primary), #2a4a7a);
+            color: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .milestone-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .milestone-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--color-secondary);
+            margin-bottom: 5px;
+        }
+        
+        .milestone-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans antialiased">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center gap-3">
+                        <img loading="lazy" width="48" height="52" src="https://crossfireworshipcenter.org/wp-content/uploads/2023/04/Church-Of-God-Logo-58x63.png" alt="CWC Logo" class="h-8 w-auto">
+                        <span class="font-extrabold text-[color:var(--color-primary)] text-lg leading-tight">Crossfire<br/>Worship<br/>Center</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="index.html" class="nav-link text-gray-700">Home</a>
+                    <a href="about.html" class="nav-link bg-[color:var(--color-secondary)] text-white px-3 py-2 rounded-md">About</a>
+                    <a href="index.html#ministries" class="nav-link text-gray-700">Ministries</a>
+                    <a href="index.html#events" class="nav-link text-gray-700">Events</a>
+                    <a href="contact.html" class="nav-link text-gray-700">Contact</a>
+                    <a href="index.html#giving" class="btn-primary"><i class="fa-solid fa-heart"></i><span>Give</span></a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="text-gray-500 hover:text-[color:var(--color-secondary)] text-2xl">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="relative overflow-hidden bg-gradient-to-tr from-[color:var(--color-primary)] to-[color:var(--color-primary)]/90">
+        <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+            <div class="text-center text-white">
+                <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">
+                    Our Story of Faith
+                </h1>
+                <p class="mt-4 max-w-2xl text-xl text-white/90 mx-auto">
+                    A Bible-based Pentecostal church where you can grow in faith and community
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Anniversary Celebration Section -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="text-center mb-12">
+            <div class="celebration-badge" id="celebrationBadge">
+                <i class="fas fa-birthday-cake mr-2"></i>Celebrating God's Faithfulness
+            </div>
+            <h2 class="celebration-text" id="celebrationText">Celebrating Our Journey</h2>
+            <div class="flex justify-center items-baseline mt-4">
+                <span class="anniversary-count" id="yearsCount">0</span>
+                <span class="years-label ml-2">Years of Ministry</span>
+            </div>
+            <p class="text-gray-600 mt-4 max-w-2xl mx-auto" id="anniversaryMessage">
+                Since our founding on May 7, 2013, God has been faithful through every season.
+            </p>
+        </div>
+
+        <!-- Milestones Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+            <div class="milestone-card">
+                <div class="milestone-number" id="yearsInMinistry">0</div>
+                <div class="milestone-label">Years in Ministry</div>
+            </div>
+            <div class="milestone-card">
+                <div class="milestone-number" id="monthsInMinistry">0</div>
+                <div class="milestone-label">Months of Service</div>
+            </div>
+            <div class="milestone-card">
+                <div class="milestone-number" id="daysInMinistry">0</div>
+                <div class="milestone-label">Days of Blessings</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- History Section -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="lg:grid lg:grid-cols-12 lg:gap-8">
+            <div class="lg:col-span-7">
+                <h2 class="text-3xl font-extrabold text-[color:var(--color-primary)] sm:text-4xl">
+                    History of Our Church
+                </h2>
+                <div class="mt-6 text-gray-600 space-y-6">
+                    <p class="text-lg">
+                        The History of the Crossfire Worship Center Church of God is preserved with the hope of inspiring our present and future congregation to a life of discipleship and a solid foundation in the Lord. It is our prayer that our current members and future members will preserve the ideals and dreams of the 16 founding members who labored before them enduring hardship while working in this area of the Lord's vineyard.
+                    </p>
+                    <p>
+                        Surely God has been our shield and strength amid the fiery darts the enemy sent our way. God has guided us with His counsel, blessed us with all spiritual blessings, and inspired us by His Holy Spirit.
+                    </p>
+                    <p>
+                        Crossfire Worship Center was established on Tuesday, May 7, 2013, in Beltsville, MD, under the leadership of Founding Pastor, Bishop Stulan Taylor. At that time there was a small but faithful band of 16 worshippers who attended worship services at the Sheraton Washington North Hotel. In this small Christian gathering, the Word of God provided the guide to light their path and the love to inspire fellowship.
+                    </p>
+                    <p>
+                        The membership steadily increased, and a church van was purchased, and the congregation moved to the Comfort Inn Hotel. On May 4, 2016, Crossfire became an organized congregation with the Church of God International Headquarters, Cleveland, Tennessee. Bishop Taylor received an Honorary Doctorate of Divinity from CICA International University & Seminary on November 25, 2017.
+                    </p>
+                </div>
+            </div>
+            <div class="mt-12 lg:mt-0 lg:col-span-5">
+                <div class="card overflow-hidden">
+                    <img class="w-full h-64 object-cover" src="https://i0.wp.com/crossfireworshipcenter.org/wp-content/uploads/2023/04/IMG_5574.jpeg?fit=1600%2C1200&ssl=1" alt="Crossfire Worship Center gathering">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-[color:var(--color-primary)]">Our Church Timeline</h3>
+                        <div class="mt-4">
+                            <div class="timeline-item">
+                                <h4 class="font-bold text-[color:var(--color-primary)]">May 7, 2013</h4>
+                                <p class="text-sm text-gray-600">Crossfire Worship Center established in Beltsville, MD</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h4 class="font-bold text-[color:var(--color-primary)]">May 4, 2016</h4>
+                                <p class="text-sm text-gray-600">Became an organized congregation with Church of God International Headquarters</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h4 class="font-bold text-[color:var(--color-primary)]">November 25, 2017</h4>
+                                <p class="text-sm text-gray-600">Bishop Taylor received Honorary Doctorate of Divinity</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h4 class="font-bold text-[color:var(--color-primary)]">August 5, 2022</h4>
+                                <p class="text-sm text-gray-600">Purchased first church home in Bowie, MD</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Growth Section -->
+    <div class="bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-[color:var(--color-primary)]">Our Growth & Mission</h2>
+                    <div class="mt-6 text-gray-600 space-y-4">
+                        <p>
+                            By the Grace of God, on August 5, 2022, Crossfire purchased its first church home! The church property includes a sanctuary, fellowship hall, administrative building, parking lot and land. We are thankful to God for his miracle working power!
+                        </p>
+                        <p>
+                            We continue to welcome new souls to the Kingdom of God and have baptized many over the years to the Glory of God. We have married several couples, held many baby dedications, and buried some of our precious members.
+                        </p>
+                        <p>
+                            We understand the importance of Community Outreach and continue to strive to win lost souls for the kingdom through this effort. Our Pastor has given us an annual goal of winning 50 souls for the Kingdom of God and we earnestly endeavor to reach this goal.
+                        </p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg p-6 card">
+                    <h3 class="text-xl font-bold text-[color:var(--color-primary)] mb-4">Our Mission Statement</h3>
+                    <p class="text-gray-600 mb-4">
+                        Crossfire Worship Center strives to nurture its members to build their own personal relationship with the Lord. We are called to follow the Great Commission, given by Jesus in Matthew 28:19-20:
+                    </p>
+                    <blockquote class="border-l-4 border-[color:var(--color-secondary)] pl-4 italic text-gray-700">
+                        "Therefore go and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit, and teaching them to obey everything I have commanded you. And surely I am with you always, to the very end of the age."
+                    </blockquote>
+                    <div class="mt-6 p-4 bg-[color:var(--color-primary)]/10 rounded-lg">
+                        <p class="text-[color:var(--color-primary)] font-bold text-center">
+                            The Crossfire Worship Center is moving forward knowing, "The Cross is Real, and the Fire is Burning."
+                        </p>
+                        <p class="text-center mt-2 font-semibold">
+                            WE LOVE GOD. WE LOVE PEOPLE. WE LOVE OUR CHURCH.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaders Section -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="text-center">
+            <h2 class="text-3xl font-extrabold text-[color:var(--color-primary)] sm:text-4xl">
+                Meet Our Leaders
+            </h2>
+            <p class="mt-4 max-w-2xl text-xl text-gray-600 mx-auto">
+                Guided by faithful servants dedicated to God's work
+            </p>
+        </div>
+
+        <div class="mt-12 grid gap-12 md:grid-cols-2">
+            <!-- Bishop Card -->
+            <div class="leader-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 ease-in-out">
+                <div class="md:flex">
+                    <div class="md:flex-shrink-0">
+                        <img class="h-64 w-full md:w-56 object-cover" src="https://i0.wp.com/crossfireworshipcenter.org/wp-content/uploads/2023/04/AD0A1241-2.jpg?resize=1085%2C724&ssl=1" alt="Bishop Dr. Stulan A. Taylor">
+                    </div>
+                    <div class="p-8">
+                        <div class="uppercase tracking-wide text-sm text-[color:var(--color-secondary)] font-semibold">Founding Pastor</div>
+                        <h3 class="mt-2 text-xl font-bold text-gray-900">Bishop Dr. Stulan A. Taylor</h3>
+                        <div class="mt-1 flex items-center text-sm text-[color:var(--color-primary)]">
+                            <i class="fa-solid fa-map-marker-alt mr-1"></i>
+                            <span>Originally from Jamaica</span>
+                        </div>
+                        <p class="mt-4 text-gray-600">
+                            Bishop Dr. Stulan A. Taylor, a naturalized American, was born in the beautiful island of Jamaica. Bishop Taylor is a man of wisdom, hope, encouragement and vision. Bishop Taylor is married to Reverend Deborah Price Taylor and is the proud father of Kevon, Shannon and Skylar.
+                        </p>
+                        <p class="mt-2 text-gray-600">
+                            Bishop Taylor grew up as a member of the Seventh Day Adventist Church, where he enjoyed serving the Lord. In 1991, the Lord changed his course and he became a part of the Church of God. Brother Taylor was happy serving the Lord and had no idea what God had planned for his life.
+                        </p>
+                        <div class="mt-4">
+                            <span class="text-sm text-gray-500">Favorite Scripture:</span>
+                            <p class="text-sm font-medium text-[color:var(--color-primary)]">James 5:16 - "The effectual fervent prayer of a righteous man availeth much."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reverend Card -->
+            <div class="leader-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 ease-in-out">
+                <div class="md:flex">
+                    <div class="md:flex-shrink-0">
+                        <img class="h-64 w-full md:w-56 object-cover" src="https://i0.wp.com/crossfireworshipcenter.org/wp-content/uploads/2023/04/AD0A1241-2.jpg?resize=1085%2C724&ssl=1" alt="Reverend Deborah Price Taylor">
+                    </div>
+                    <div class="p-8">
+                        <div class="uppercase tracking-wide text-sm text-[color:var(--color-secondary)] font-semibold">First Lady</div>
+                        <h3 class="mt-2 text-xl font-bold text-gray-900">Reverend Deborah Price Taylor</h3>
+                        <div class="mt-1 flex items-center text-sm text-[color:var(--color-primary)]">
+                            <i class="fa-solid fa-map-marker-alt mr-1"></i>
+                            <span>Washington, DC Native</span>
+                        </div>
+                        <p class="mt-4 text-gray-600">
+                            Reverend Deborah Price Taylor was born and raised in Washington, DC, to Ulysses Sherman Price and Esther Wiley Price. She graduated from George Washington University with a Bachelor of Business Administration in Marketing and received a Master of Science in Health Care Administration from the University of Maryland University College.
+                        </p>
+                        <p class="mt-2 text-gray-600">
+                            She enjoys reading and listening to music and she loves to sing. Reverend Taylor loves the Lord and seeks to please him in every area of her life.
+                        </p>
+                        <div class="mt-4">
+                            <span class="text-sm text-gray-500">Favorite Scripture:</span>
+                            <p class="text-sm font-medium text-[color:var(--color-primary)]">John 11:25 - "Jesus said unto her, I am the resurrection, and the life: he that believeth in me, though he were dead, yet shall he live."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Ministry Experience Section -->
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="card p-6">
+                <h3 class="text-xl font-bold text-[color:var(--color-primary)] mb-4">Bishop Taylor's Ministry Journey</h3>
+                <ul class="space-y-3 text-gray-600">
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-check text-[color:var(--color-secondary)] mt-1 mr-2"></i>
+                        <span>2003: Completed the Ministerial Internship Program</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-check text-[color:var(--color-secondary)] mt-1 mr-2"></i>
+                        <span>2010: Received Ordained Bishop license</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-check text-[color:var(--color-secondary)] mt-1 mr-2"></i>
+                        <span>Served at Metropolitan Church of God in various capacities</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-check text-[color:var(--color-secondary)] mt-1 mr-2"></i>
+                        <span>Served on Church of God Delmarva-DC State Laymen Board</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-check text-[color:var(--color-secondary)] mt-1 mr-2"></i>
+                        <span>Earned membership to Hall of Excellence at Church of God headquarters</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-check text-[color:var(--color-secondary)] mt-1 mr-2"></i>
+                        <span>2016: Celebrated as one of area's top 20 Pastors at Praise 104.1 FM Prayer Breakfast</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-check text-[color:var(--color-secondary)] mt-1 mr-2"></i>
+                        <span>Currently pursuing Bachelor of Arts in Theology at Lee University</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="card p-6">
+                <h3 class="text-xl font-bold text-[color:var(--color-primary)] mb-4">Reverend Taylor's Service</h3>
+                <p class="text-gray-600 mb-4">
+                    Reverend Taylor grew up in and served faithfully and continually at the Greater Washington Deliverance Temple in Laurel, MD under the tutelage of the late Bishop Robert Simpson, Jr. and the late Dr. Ida M. Simpson and most recently, under Pastor Karen Simpson Rutherford.
+                </p>
+                <p class="text-gray-600 font-semibold mb-2">Through the years, Lady Taylor served as president of:</p>
+                <ul class="space-y-2 text-gray-600">
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-arrow-right text-[color:var(--color-secondary)] mt-1 mr-2"></i>
+                        <span>Youth Department</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-arrow-right text-[color:var(--color-secondary)] mt-1 mr-2"></i>
+                        <span>Missionary Board</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-arrow-right text-[color:var(--color-secondary)] mt-1 mr-2"></i>
+                        <span>Singles Ministry</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-arrow-right text-[color:var(--color-secondary)] mt-1 mr-2"></i>
+                        <span>Evangelism Department</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Anniversary Banner -->
+    <div class="bg-gradient-to-r from-[color:var(--color-primary)] to-[color:var(--color-secondary)]">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl" id="dynamicAnniversaryTitle">
+                    Celebrating Our Ministry Journey
+                </h2>
+                <p class="mt-3 max-w-2xl mx-auto text-xl text-white sm:mt-4" id="dynamicAnniversarySubtitle">
+                    Thanking God for His faithfulness through the years
+                </p>
+                <div class="mt-8 flex justify-center">
+                    <div class="inline-flex rounded-md shadow">
+                        <a href="index.html#events" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-[color:var(--color-primary)] bg-white hover:bg-gray-50">
+                            Join Our Celebration
+                            <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 grid md:grid-cols-4 gap-8">
+            <div>
+                <h3 class="text-xl font-bold mb-3">Crossfire Worship Center</h3>
+                <p class="text-sm text-gray-300">A Bible-based Pentecostal church where you can grow in faith and community.</p>
+                <div class="mt-4">
+                    <p class="text-sm text-gray-300"><i class="fa-solid fa-location-dot mr-2"></i>6310 Cipriano Road, Lanham, MD 20706</p>
+                    <p class="text-sm text-gray-300 mt-1"><i class="fa-solid fa-phone mr-2"></i>(301) 552-4200</p>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-bold mb-3">Quick Links</h4>
+                <ul class="space-y-2 text-gray-300">
+                    <li><a class="hover:text-[color:var(--color-secondary)]" href="index.html#sermons">Sermons</a></li>
+                    <li><a class="hover:text-[color:var(--color-secondary)]" href="index.html#events">Events</a></li>
+                    <li><a class="hover:text-[color:var(--color-secondary)]" href="index.html#visitor">Plan a Visit</a></li>
+                    <li><a class="hover:text-[color:var(--color-secondary)]" href="index.html#resources">Resources</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-3">Ministries</h4>
+                <ul class="space-y-2 text-gray-300">
+                    <li><a class="hover:underline" href="men_ministry.html">Men</a> • <a class="hover:underline" href="women_ministry.html">Women</a> • <a class="hover:underline" href="youth_ministry.html">Youth</a> • <a class="hover:underline" href="praise_and_worship.html">Worship</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-3">Stay Connected</h4>
+                <div class="flex gap-4 text-xl">
+                    <a aria-label="Facebook" href="#" class="hover:text-[color:var(--color-secondary)]"><i class="fab fa-facebook-f"></i></a>
+                    <a aria-label="YouTube" href="https://www.youtube.com/@crossfireworshipcentercwc6729" class="hover:text-[color:var(--color-secondary)]"><i class="fab fa-youtube"></i></a>
+                </div>
+                <a href="index.html#giving" class="btn-primary mt-4 inline-flex"><span>Give Online</span></a>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 text-center py-4 text-gray-400 text-sm">&copy; 2025 Crossfire Worship Center. All rights reserved.</div>
+    </footer>
+
+    <script>
+        // Church anniversary calculation
+        function calculateAnniversary() {
+            const foundingDate = new Date('May 7, 2013');
+            const currentDate = new Date();
+            
+            // Calculate years, months, and days
+            let years = currentDate.getFullYear() - foundingDate.getFullYear();
+            let months = currentDate.getMonth() - foundingDate.getMonth();
+            let days = currentDate.getDate() - foundingDate.getDate();
+            
+            // Adjust for negative months or days
+            if (days < 0) {
+                months--;
+                // Get days in previous month
+                const prevMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
+                days += prevMonth.getDate();
+            }
+            
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+            
+            // Calculate total days
+            const timeDiff = currentDate.getTime() - foundingDate.getTime();
+            const totalDays = Math.floor(timeDiff / (1000 * 3600 * 24));
+            
+            return {
+                years: years,
+                months: months,
+                days: days,
+                totalDays: totalDays
+            };
+        }
+        
+        // Update celebration content based on anniversary
+        function updateCelebrationContent() {
+            const anniversary = calculateAnniversary();
+            const years = anniversary.years;
+            const months = anniversary.months;
+            const days = anniversary.days;
+            const totalDays = anniversary.totalDays;
+            
+            // Update the main celebration section
+            document.getElementById('yearsCount').textContent = years;
+            document.getElementById('yearsInMinistry').textContent = years;
+            document.getElementById('monthsInMinistry').textContent = (years * 12) + months;
+            document.getElementById('daysInMinistry').textContent = totalDays.toLocaleString();
+            
+            // Update celebration messages based on milestone
+            const celebrationBadge = document.getElementById('celebrationBadge');
+            const celebrationText = document.getElementById('celebrationText');
+            const anniversaryMessage = document.getElementById('anniversaryMessage');
+            const dynamicAnniversaryTitle = document.getElementById('dynamicAnniversaryTitle');
+            const dynamicAnniversarySubtitle = document.getElementById('dynamicAnniversarySubtitle');
+            
+            // Special messages for milestone years
+            if (years >= 10) {
+                celebrationBadge.innerHTML = '<i class="fas fa-trophy mr-2"></i>Milestone Anniversary';
+                celebrationText.textContent = `Celebrating ${years} Years of Ministry`;
+                anniversaryMessage.textContent = `Since our founding on May 7, 2013, God has been faithful through ${years} years of ministry.`;
+                dynamicAnniversaryTitle.textContent = `Celebrating ${years} Years of Ministry`;
+                dynamicAnniversarySubtitle.textContent = `HAPPY ${years}-YEAR ANNIVERSARY CROSSFIRE!`;
+            } else if (years >= 5) {
+                celebrationBadge.innerHTML = '<i class="fas fa-star mr-2"></i>Celebrating Growth';
+                celebrationText.textContent = `Celebrating ${years} Years of Ministry`;
+                anniversaryMessage.textContent = `Thanking God for ${years} years of faithfulness and growth since our founding on May 7, 2013.`;
+                dynamicAnniversaryTitle.textContent = `Celebrating ${years} Years of Ministry`;
+                dynamicAnniversarySubtitle.textContent = `HAPPY ${years}-YEAR ANNIVERSARY CROSSFIRE!`;
+            } else {
+                celebrationBadge.innerHTML = '<i class="fas fa-seedling mr-2"></i>Growing in Faith';
+                celebrationText.textContent = `Celebrating Our Journey`;
+                anniversaryMessage.textContent = `Since our founding on May 7, 2013, God has been faithful through every season.`;
+                dynamicAnniversaryTitle.textContent = `Celebrating Our Ministry Journey`;
+                dynamicAnniversarySubtitle.textContent = `Thanking God for His faithfulness through the years`;
+            }
+            
+            // Check if today is the exact anniversary
+            const today = new Date();
+            if (today.getMonth() === 4 && today.getDate() === 7) { // May is month 4 (0-indexed)
+                celebrationBadge.innerHTML = '<i class="fas fa-birthday-cake mr-2"></i>Happy Anniversary!';
+                celebrationText.textContent = `Happy ${years} Year Anniversary!`;
+                anniversaryMessage.textContent = `Today we celebrate ${years} years of God's faithfulness since our founding on May 7, 2013.`;
+                dynamicAnniversaryTitle.textContent = `Happy ${years} Year Anniversary!`;
+                dynamicAnniversarySubtitle.textContent = `HAPPY ANNIVERSARY CROSSFIRE!`;
+                
+                // Add extra celebration styling
+                document.body.classList.add('celebration-day');
+            }
+        }
+        
+        // Simple mobile menu toggle
+        document.querySelector('.fa-bars').closest('button').addEventListener('click', function() {
+            const nav = document.querySelector('.hidden.md\\:flex');
+            nav.classList.toggle('hidden');
+            nav.classList.toggle('flex');
+            nav.classList.toggle('flex-col');
+            nav.classList.toggle('absolute');
+            nav.classList.toggle('top-16');
+            nav.classList.toggle('left-0');
+            nav.classList.toggle('right-0');
+            nav.classList.toggle('bg-white');
+            nav.classList.toggle('p-4');
+            nav.classList.toggle('shadow-lg');
+        });
+        
+        // Nav scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+        });
+        
+        // Initialize the celebration content
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCelebrationContent();
+        });
+    </script>
+</body>
+</html>

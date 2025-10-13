@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Directory - Crossfire Worship Center</title>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <style>
+    :root { --color-primary:#0f2c59; --color-secondary:#f39c12; }
+    .font-serif{font-family:'Cormorant Garamond',serif;}
+    .font-sans{font-family:'Lato',sans-serif;}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1rem;border-radius:9999px;font-weight:700}
+    .btn-outline{border:1px solid #d1d5db;color:var(--color-primary);background:#fff}
+    .btn-primary{background:var(--color-secondary);color:#fff}
+    .nav-link{padding:.5rem .75rem;border-radius:.5rem}
+    .nav-link:hover{background:#f3f4f6}
+    .card{border-radius:1rem;border:1px solid #e5e7eb;background:#fff}
+    .tile{display:flex;align-items:center;gap:.9rem;padding:1rem;border-radius:1rem;border:1px solid #e5e7eb;background:#fff}
+    .tile:hover{box-shadow:0 8px 28px rgba(0,0,0,.07); transform: translateY(-1px); transition: all .2s}
+    .muted{color:#6b7280}
+    .kicker{letter-spacing:.15em;text-transform:uppercase;font-weight:700;font-size:.75rem;color:#6b7280}
+  
+/* --- Site-wide mobile polish (Members area) --- */
+@media (max-width: 640px){
+  .mobile-pad { padding-left: 1rem; padding-right: 1rem; }
+  .hero-tight { min-height: 60vh; }
+  .mobile-leading { line-height: 1.35; }
+  .mobile-tap a, .mobile-tap button { min-height: 44px; display:inline-flex; align-items:center; }
+  .grid-auto-xs { grid-template-columns: repeat(1, minmax(0,1fr)); }
+}
+/* Improve sticky headers visibility on scroll */
+.sticky\:shadow-when-scrolled{ box-shadow: 0 1px 0 rgba(17,24,39,.06); }
+/* Better cards on dense screens */
+.card{ border-radius:1rem; border:1px solid #e5e7eb; background:#fff }
+.card-sm{ padding: .875rem }
+img[loading="lazy"]{ content-visibility:auto }
+
+</style>
+
+</head>
+<body class="font-sans text-gray-800 bg-gray-50">
+
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b">
+  <div class="container mx-auto px-4 h-16 flex items-center justify-between">
+    <a href="index.html#home" class="flex items-center gap-3 shrink-0">
+      <img src="https://crossfireworshipcenter.org/wp-content/uploads/2023/04/Church-Of-God-Logo-58x63.png" alt="logo" class="h-8 w-auto" loading="lazy">
+      <span class="font-extrabold text-[color:var(--color-primary)]">Crossfire Worship Center</span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden lg:flex items-center gap-1 text-[color:var(--color-primary)] font-semibold">
+      <a href="index.html#home" class="nav-link">Home</a>
+
+      <div class="relative group">
+        <button class="nav-link inline-flex items-center gap-1">About
+          <i class="fa-solid fa-chevron-down text-xs"></i>
+        </button>
+        <div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition pointer-events-auto absolute left-0 mt-2 w-56 rounded-xl border bg-white shadow-lg p-2">
+          <a class="block px-3 py-2 rounded-lg hover:bg-blue-50" href="index.html#about">Who We Are</a>
+          <a class="block px-3 py-2 rounded-lg hover:bg-blue-50" href="index.html#ministries">Ministries</a>
+          <a class="block px-3 py-2 rounded-lg hover:bg-blue-50" href="index.html#staff">Pastoral Staff</a>
+          <a class="block px-3 py-2 rounded-lg hover:bg-blue-50" href="declaration_of_faith.html">Declaration of Faith</a>
+        </div>
+      </div>
+
+      <a href="index.html#sermons" class="nav-link">Sermons</a>
+      <a href="index.html#events" class="nav-link">Events</a>
+      <a href="index.html#testimonials" class="nav-link">Testimonials</a>
+      <a href="index.html#visitor" class="nav-link">Visitor Info</a>
+      <a href="index.html#resources" class="nav-link">Resources</a>
+    </nav>
+
+    <div class="hidden lg:flex items-center gap-3">
+      <a class="btn-outline text-sm" href="members.html">Members</a>
+      <a class="btn btn-primary text-sm" href="index.html#giving"><i class="fa-solid fa-heart"></i><span>Give</span></a>
+    </div>
+
+    <!-- Mobile -->
+    <button id="hamburger" class="lg:hidden p-2 rounded-md border text-[color:var(--color-primary)]">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+
+  <!-- Mobile Drawer -->
+  <div id="mobileMenu" class="mobile-tap lg:hidden hidden border-t bg-white">
+    <div class="container mx-auto px-4 py-4 grid gap-3">
+      <a href="index.html#home" class="py-2">Home</a>
+      <a href="index.html#about" class="py-2">Who We Are</a>
+      <a href="index.html#ministries" class="py-2">Ministries</a>
+      <a href="index.html#staff" class="py-2">Pastoral Staff</a>
+      <a href="declaration_of_faith.html" class="py-2">Declaration of Faith</a>
+      <a href="index.html#sermons" class="py-2">Sermons</a>
+      <a href="index.html#events" class="py-2">Events</a>
+      <a href="index.html#testimonials" class="py-2">Testimonials</a>
+      <a href="index.html#visitor" class="py-2">Visitor Info</a>
+      <a href="index.html#resources" class="py-2">Resources</a>
+      <div class="h-px bg-gray-200 my-2"></div>
+      <a href="members.html" class="py-2">Members</a>
+      <a href="index.html#giving" class="py-2">Give</a>
+    </div>
+  </div>
+  <script>
+    const hb = document.getElementById('hamburger');
+    const mm = document.getElementById('mobileMenu');
+    hb?.addEventListener('click', () => mm.classList.toggle('hidden'));
+  </script>
+</header>
+
+
+    <nav class="container mx-auto px-4 mt-4">
+      <div class="flex flex-wrap gap-x-2 gap-y-2 text-sm md:text-base border-b border-gray-200">
+        <a href="members_dashboard.html" class="px-4 py-3 -mb-px border-b-2 border-transparent text-gray-600 hover:text-[color:var(--color-secondary)] hover:border-[color:var(--color-secondary)]">Dashboard</a><a href="members_directory.html" class="px-4 py-3 -mb-px border-b-2 border-[color:var(--color-secondary)] text-[color:var(--color-secondary)] font-semibold" aria-current="page">Directory</a><a href="members_resources.html" class="px-4 py-3 -mb-px border-b-2 border-transparent text-gray-600 hover:text-[color:var(--color-secondary)] hover:border-[color:var(--color-secondary)]">Resources</a><a href="members_events.html" class="px-4 py-3 -mb-px border-b-2 border-transparent text-gray-600 hover:text-[color:var(--color-secondary)] hover:border-[color:var(--color-secondary)]">Events</a><a href="members_prayers.html" class="px-4 py-3 -mb-px border-b-2 border-transparent text-gray-600 hover:text-[color:var(--color-secondary)] hover:border-[color:var(--color-secondary)]">Prayers</a><a href="members_forum.html" class="px-4 py-3 -mb-px border-b-2 border-transparent text-gray-600 hover:text-[color:var(--color-secondary)] hover:border-[color:var(--color-secondary)]">Forum</a><a href="members_profile.html" class="px-4 py-3 -mb-px border-b-2 border-transparent text-gray-600 hover:text-[color:var(--color-secondary)] hover:border-[color:var(--color-secondary)]">Profile</a>
+        <span class="flex-grow"></span>
+        <span id="whoami" class="hidden md:inline text-xs text-gray-500 self-end pb-3"></span>
+        <button id="btnSignOut" class="text-xs md:text-sm px-3 py-1.5 rounded-full border border-gray-300 text-[color:var(--color-primary)] font-semibold self-end mb-1">Sign Out</button>
+      </div>
+    </nav>
+    
+<main>
+  
+  <section class="bg-gray-50">
+    <div class="container mx-auto px-4 py-10 md:py-10 md:py-14">
+      <p class="kicker">Members</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-[color:var(--color-primary)]">Directory</h1>
+      <p class="muted mt-2">Connect with fellow members. Search, filter, and view details to build community.</p>
+    </div>
+  </section>
+  <section class="pb-20">
+    <div class="container mx-auto px-4 max-w-3xl">
+      <div class="card p-8 space-y-6">
+        <h3 class="text-xl font-bold text-[color:var(--color-primary)] mb-4">Member Directory</h3>
+        
+        <!-- Filters & Search -->
+        <div class="grid md:grid-cols-4 gap-4">
+          <div>
+            <label class="block text-sm font-medium">View As</label>
+            <select id="view-mode" class="w-full border rounded p-2">
+              <option value="households">Households</option>
+              <option value="individuals">Individuals</option>
+            </select>
+          </div>
+          <div class="md:col-span-3">
+            <label class="block text-sm font-medium">Search</label>
+            <input id="dir-search" type="text" class="w-full border rounded p-2" placeholder="Search by name">
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Ministry/Team</label>
+            <select id="filter-ministry" class="w-full border rounded p-2">
+              <option value="">All</option>
+              <!-- dynamic options added by JS -->
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Small Group</label>
+            <select id="filter-group" class="w-full border rounded p-2">
+              <option value="">All</option>
+              <!-- dynamic -->
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Status</label>
+            <select id="filter-status" class="w-full border rounded p-2">
+              <option value="">All</option>
+              <option>Active Member</option>
+              <option>Visitor</option>
+              <option>Volunteer</option>
+              <option>Leadership</option>
+              <!-- dynamic if more -->
+            </select>
+          </div>
+          <label class="inline-flex items-center gap-2 col-span-1 md:col-span-1">
+            <input id="filter-hs" type="checkbox"> Has High School Children
+          </label>
+        </div>
+
+        <ul id="directory-results" class="space-y-4"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal for Details -->
+  <div id="dir-modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 flex">
+    <div class="rounded-xl bg-white p-6 max-w-lg w-full space-y-4 relative">
+      <button id="dir-modal-close" class="absolute top-2 right-2 text-gray-500"><i class="fa-solid fa-xmark"></i></button>
+      <div id="dir-modal-content" class="text-gray-700"></div>
+      <textarea id="dir-message-text" class="w-full border rounded p-2" placeholder="Send a message..."></textarea>
+      <button id="dir-message-send" class="px-4 py-2 rounded bg-[color:var(--color-secondary)] text-white font-semibold">Send</button>
+    </div>
+  </div>
+
+</main>
+
+<footer class="bg-gray-100 border-t mt-20">
+  <div class="container mx-auto px-4 py-10 grid md:grid-cols-3 gap-8 text-sm text-gray-600">
+    <div>
+      <div class="font-bold text-[color:var(--color-primary)]">Crossfire Worship Center</div>
+      <p class="mt-2">Loving God, Loving People.</p>
+    </div>
+    <div>
+      <div class="font-bold text-[color:var(--color-primary)]">Quick Links</div>
+      <div class="mt-2 grid grid-cols-2 gap-x-4 gap-y-2">
+        <a href="index.html#about">About</a>
+        <a href="index.html#ministries">Ministries</a>
+        <a href="index.html#sermons">Sermons</a>
+        <a href="index.html#events">Events</a>
+        <a href="index.html#resources">Resources</a>
+        <a href="declaration_of_faith.html">Declaration of Faith</a>
+      </div>
+    </div>
+    <div>
+      <div class="font-bold text-[color:var(--color-primary)]">Give</div>
+      <p class="mt-2">Partner with us in ministry.</p>
+      <a class="btn btn-primary mt-3" href="index.html#giving"><i class="fa-solid fa-heart"></i> Give</a>
+    </div>
+  </div>
+  <div class="border-t">
+    <div class="container mx-auto px-4 py-6 text-center text-gray-600 text-xs">
+      &copy; <span id="year"></span> Crossfire Worship Center. All rights reserved.
+    </div>
+  </div>
+</footer>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+
+  <script type="module">
+    // No need to re-init Firebase here—it's already done earlier
+
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        window.location.href = "members.html";
+      } else {
+        const who = document.getElementById('whoami');
+        if (who) who.textContent = "Signed in as " + (user.email || "member");
+        loadDirectory();
+      }
+    });
+
+    document.getElementById('btnSignOut')?.addEventListener('click', async () => {
+      await signOut(auth);
+      window.location.href = "members.html";
+    });
+
+    async function loadDirectory() {
+      getDocs(collection(db, 'users')).then((querySnapshot) => {
+        const list = document.getElementById('directory-list');
+        list.innerHTML = ''; // Clear list
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          const li = document.createElement('li');
+          li.classList.add('border-b', 'pb-2', 'text-gray-700');
+          li.textContent = `${data.name} - ${data.email}`;
+          list.appendChild(li);
+        });
+      }).catch((error) => {
+        console.error("Error loading directory:", error);
+      });
+    }
+  </script>
+
+</body>
+</html>

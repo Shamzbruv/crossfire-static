@@ -1,0 +1,445 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bible Quest — Crossfire Worship Center</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="description" content="A fun, fast, and faith-building Bible game by Crossfire Worship Center."/>
+  <style>
+    :root { --color-primary:#173262; --color-secondary:#d09a2a; --transition: all .24s ease; }
+    html, body { font-family:'Inter',sans-serif; scroll-behavior:smooth; background:#f8fafc; }
+    .btn-primary{display:inline-flex;align-items:center;gap:.5rem;background:var(--color-secondary);color:#fff;padding:.7rem 1.1rem;border-radius:9999px;font-weight:800;box-shadow:0 6px 16px rgba(208,154,42,.3);transition:var(--transition)}
+    .btn-primary:hover{transform:translateY(-1px);box-shadow:0 10px 20px rgba(208,154,42,.34)}
+    .btn-outline{border:2px solid var(--color-secondary);color:var(--color-secondary);padding:.55rem 1rem;border-radius:9999px;font-weight:800;transition:var(--transition)}
+    .btn-outline:hover{background:var(--color-secondary);color:#fff}
+    .card{background:#fff;border-radius:1rem;box-shadow:0 10px 20px rgba(0,0,0,.06);transition:var(--transition)}
+    .card:hover{transform:translateY(-2px);box-shadow:0 14px 26px rgba(0,0,0,.1)}
+    .chip{border:2px solid #e5e7eb;border-radius:9999px;padding:.35rem .8rem;font-weight:700}
+    .pill{background:rgba(208,154,42,.12);color:var(--color-secondary);font-weight:800;border-radius:9999px;padding:.25rem .6rem}
+    .tab-btn{padding:.6rem 1rem;border-radius:.75rem;font-weight:800}
+    .tab-btn.active{background:var(--color-primary);color:#fff}
+    .progress{height:10px;background:#e5e7eb;border-radius:9999px;overflow:hidden}
+    .progress > div{height:10px;background:var(--color-secondary);width:0%;transition:width .3s ease}
+    .draggable{cursor:grab}
+    .draggable:active{cursor:grabbing}
+    .dropzone{border:2px dashed #cbd5e1;border-radius:.75rem;min-height:48px;display:flex;gap:.5rem;flex-wrap:wrap;padding:.5rem}
+    .toast{position:fixed;bottom:16px;right:16px;background:#111827;color:#fff;padding:.7rem 1rem;border-radius:.75rem;box-shadow:0 10px 24px rgba(0,0,0,.25);display:none}
+  </style>
+</head>
+<body class="text-slate-800">
+  <header class="bg-white/90 backdrop-blur sticky top-0 z-40 border-b">
+    <div class="max-w-6xl mx-auto px-4 h-[72px] flex items-center gap-4">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="https://crossfireworshipcenter.org/wp-content/uploads/2023/04/Church-Of-God-Logo-58x63.png" class="h-8 w-auto" alt="CWC Logo">
+        <span class="font-extrabold text-[color:var(--color-primary)] leading-tight hidden sm:block">Crossfire<br/>Worship<br/>Center</span>
+      </a>
+      <div class="ml-auto flex items-center gap-2">
+        <a href="index.html#ministries" class="btn-outline text-sm hidden sm:inline-flex"><i class="fa-solid fa-church"></i><span>Back to Site</span></a>
+        <button id="howToBtn" class="btn-primary text-sm"><i class="fa-solid fa-circle-question"></i><span>How to Play</span></button>
+      </div>
+    </div>
+  </header>
+
+  <section class="relative">
+    <div class="max-w-6xl mx-auto px-4 py-10 md:py-14 grid md:grid-cols-2 gap-6 items-center">
+      <div>
+        <h1 class="text-4xl md:text-5xl font-extrabold text-[color:var(--color-primary)]">Bible Quest</h1>
+        <p class="mt-3 text-slate-600 md:text-lg">A compact, polished game to learn Scripture, church beliefs, and Bible order—fun for youth, adults, and small groups.</p>
+        <div class="mt-6 flex gap-3 flex-wrap">
+          <button data-tab="quiz" class="tab-btn active btn-outline"><i class="fa-solid fa-list-check"></i> Classic Quiz</button>
+          <button data-tab="order" class="tab-btn btn-outline"><i class="fa-solid fa-arrow-down-a-z"></i> Books in Order</button>
+          <button data-tab="doctrine" class="tab-btn btn-outline"><i class="fa-solid fa-cross"></i> Doctrine Dash</button>
+        </div>
+        <div class="mt-4 flex items-center gap-3 text-sm">
+          <span class="pill"><i class="fa-solid fa-gauge-high"></i> 5–10 min</span>
+          <span class="pill"><i class="fa-solid fa-user-group"></i> Solo or Teams</span>
+          <span class="pill"><i class="fa-solid fa-floppy-disk"></i> Saves High Score</span>
+        </div>
+      </div>
+      <div class="card p-5">
+        <div class="progress mb-3"><div id="progressBar"></div></div>
+        <div class="flex justify-between text-sm text-slate-600">
+          <span>Question <span id="qNum">0</span>/<span id="qTotal">0</span></span>
+          <span>Score: <span class="font-bold" id="score">0</span></span>
+        </div>
+        <div id="gameArea" class="mt-4"></div>
+        <div id="actions" class="mt-5 flex items-center gap-3">
+          <button id="nextBtn" class="btn-primary hidden"><i class="fa-solid fa-forward-step"></i> Next</button>
+          <button id="restartBtn" class="btn-outline"><i class="fa-solid fa-rotate-right"></i> Restart</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <dialog id="howTo" class="w-[min(92vw,640px)] rounded-2xl p-0 shadow-2xl">
+    <div class="p-6">
+      <h2 class="text-2xl font-extrabold text-[color:var(--color-primary)]">How to Play</h2>
+      <ol class="list-decimal ml-6 mt-2 space-y-2 text-slate-700">
+        <li><strong>Classic Quiz:</strong> Multiple-choice Bible questions. Tap an answer to lock it in. Green = correct, red = not quite.</li>
+        <li><strong>Books in Order:</strong> Drag the books into the correct order. Submit to check.</li>
+        <li><strong>Doctrine Dash:</strong> Match the belief statement to the category (e.g., Bible, God, Salvation, Last Things).</li>
+      </ol>
+      <p class="mt-3 text-sm text-slate-600">Tip: Play in teams and keep a running scoreboard for youth nights and small groups. High score is saved on this device.</p>
+      <div class="mt-4 flex justify-end gap-2">
+        <button class="btn-outline" onclick="document.getElementById('howTo').close()">Close</button>
+      </div>
+    </div>
+  </dialog>
+
+  <div id="toast" class="toast text-sm"></div>
+
+  <footer class="mt-10 py-8 text-center text-xs text-slate-500">
+    Built for Crossfire Worship Center • <span id="hiScoreSlot">High Score: —</span>
+  </footer>
+
+<script>
+/** —— EXPANDED GAME DATA —— **/
+const QUIZ_BANK = [
+  {q:'Who built an ark by God’s command?', choices:['Abraham','Moses','Noah','Adam'], a:2, ref:'Genesis 6–9'},
+  {q:'God promised many descendants to which patriarch?', choices:['Esau','Joseph','Abraham','Ishmael'], a:2, ref:'Genesis 12:1–3'},
+  {q:'Which son of Isaac had twelve sons who became tribes?', choices:['Esau','Jacob','Benjamin','Levi'], a:1, ref:'Genesis 35:22–26'},
+  {q:'In which book are the Ten Commandments first listed?', choices:['Genesis','Exodus','Leviticus','Numbers'], a:1, ref:'Exodus 20'},
+  {q:'Who succeeded Moses and led Israel into Canaan?', choices:['Joshua','Caleb','Samuel','Gideon'], a:0, ref:'Joshua 1'},
+  {q:'Which judge cut down the Midianites with 300 men?', choices:['Samson','Gideon','Jephthah','Deborah'], a:1, ref:'Judges 7'},
+  {q:'Who said, “As for me and my house, we will serve the LORD”?', choices:['Moses','Joshua','David','Samuel'], a:1, ref:'Joshua 24:15'},
+  {q:'Which young shepherd defeated Goliath?', choices:['Saul','David','Jonathan','Abner'], a:1, ref:'1 Samuel 17'},
+  {q:'Which king built the first Temple in Jerusalem?', choices:['David','Solomon','Hezekiah','Josiah'], a:1, ref:'1 Kings 6'},
+  {q:'Who confronted King Ahab on Mount Carmel against Baal’s prophets?', choices:['Elisha','Elijah','Micah','Amos'], a:1, ref:'1 Kings 18'},
+  {q:'Which prophet was taken up by a whirlwind?', choices:['Elijah','Elisha','Isaiah','Jeremiah'], a:0, ref:'2 Kings 2'},
+  {q:'Which OT book is primarily about the rebuilding of Jerusalem’s wall?', choices:['Ezra','Nehemiah','Haggai','Zechariah'], a:1, ref:'Nehemiah 1–6'},
+  {q:'Who said, “Here am I; send me”?', choices:['Jeremiah','Ezekiel','Isaiah','Daniel'], a:2, ref:'Isaiah 6:8'},
+  {q:'Which prophet spent time in a lions’ den?', choices:['Daniel','Jeremiah','Hosea','Habakkuk'], a:0, ref:'Daniel 6'},
+  {q:'Which book contains the vision of the valley of dry bones?', choices:['Jeremiah','Ezekiel','Joel','Amos'], a:1, ref:'Ezekiel 37'},
+  {q:'Who married Gomer as a prophetic sign?', choices:['Hosea','Amos','Micah','Zephaniah'], a:0, ref:'Hosea 1'},
+  {q:'“What does the LORD require of you… but to do justly, love mercy, and walk humbly” is from?', choices:['Amos','Micah','Nahum','Malachi'], a:1, ref:'Micah 6:8'},
+  {q:'Which prophet foretold “the sun of righteousness shall rise with healing”?', choices:['Zechariah','Haggai','Malachi','Zephaniah'], a:2, ref:'Malachi 4:2'},
+  {q:'Which book contains many songs and prayers, including Psalm 23?', choices:['Proverbs','Psalms','Job','Song of Solomon'], a:1, ref:'Psalms'},
+  {q:'“The fear of the LORD is the beginning of wisdom” is found in?', choices:['Proverbs','Ecclesiastes','Job','Psalms'], a:0, ref:'Proverbs 9:10'},
+  {q:'Which book wrestles deeply with suffering and God’s sovereignty?', choices:['Job','Psalms','Ecclesiastes','Proverbs'], a:0, ref:'Job'},
+  {q:'“A time to be born, and a time to die” is from?', choices:['Proverbs','Ecclesiastes','Psalms','Job'], a:1, ref:'Ecclesiastes 3'},
+  {q:'Where was Jesus born?', choices:['Nazareth','Bethlehem','Capernaum','Jerusalem'], a:1, ref:'Luke 2; Matthew 2'},
+  {q:'Who baptized Jesus?', choices:['Peter','John the Baptist','Andrew','James'], a:1, ref:'Matthew 3'},
+  {q:'Which Gospel focuses on “I AM” sayings?', choices:['Matthew','Mark','Luke','John'], a:3, ref:'John 6–15'},
+  {q:'Which Gospel is most concise and action-oriented?', choices:['Matthew','Mark','Luke','John'], a:1, ref:'Mark'},
+  {q:'Which physician wrote a Gospel and Acts?', choices:['Luke','Mark','Matthew','John'], a:0, ref:'Luke 1:1–4; Acts 1:1'},
+  {q:'At Pentecost, the Holy Spirit came with wind and tongues of fire in which chapter?', choices:['Acts 1','Acts 2','Acts 5','Acts 10'], a:1, ref:'Acts 2'},
+  {q:'Who gave the sermon where ~3,000 were added in a day?', choices:['Paul','Peter','Stephen','James'], a:1, ref:'Acts 2:41'},
+  {q:'Who saw a vision of a sheet with clean/unclean animals?', choices:['Peter','Paul','Cornelius','Philip'], a:0, ref:'Acts 10'},
+  {q:'Who was stoned, seeing the heavens opened and Jesus standing?', choices:['James','Stephen','Barnabas','Silas'], a:1, ref:'Acts 7'},
+  {q:'Which couple lied about their offering and died?', choices:['Priscilla & Aquila','Ananias & Sapphira','Herod & Bernice','Felix & Drusilla'], a:1, ref:'Acts 5'},
+  {q:'“The just shall live by faith” is emphasized in which letter?', choices:['Romans','Ephesians','Titus','Philemon'], a:0, ref:'Romans 1:17'},
+  {q:'The Fruit of the Spirit list is in which letter?', choices:['Ephesians','Galatians','Philippians','Colossians'], a:1, ref:'Galatians 5:22–23'},
+  {q:'“By grace you have been saved through faith” appears in?', choices:['Romans','Ephesians','Galatians','James'], a:1, ref:'Ephesians 2:8–9'},
+  {q:'“Let this mind be in you… Christ Jesus” is in?', choices:['Philippians','Colossians','1 Thessalonians','2 Corinthians'], a:0, ref:'Philippians 2:5–11'},
+  {q:'Armor of God is found in?', choices:['Ephesians 6','Romans 8','1 Peter 5','Hebrews 11'], a:0, ref:'Ephesians 6:10–18'},
+  {q:'“The love chapter” (Love is patient…) is where?', choices:['1 Corinthians 13','Romans 12','Colossians 3','1 John 4'], a:0, ref:'1 Corinthians 13'},
+  {q:'Who is the runaway slave mentioned by Paul?', choices:['Onesimus','Tychicus','Demas','Epaphroditus'], a:0, ref:'Philemon'},
+  {q:'“Faith without works is dead” is from?', choices:['Hebrews','James','1 Peter','Jude'], a:1, ref:'James 2'},
+  {q:'“God is love” strongly features in which letter?', choices:['1 John','2 Peter','Jude','Hebrews'], a:0, ref:'1 John 4:8'},
+  {q:'Hebrews highlights Jesus as our great…', choices:['Prophet only','High Priest','Judge only','King only'], a:1, ref:'Hebrews 4–10'},
+  {q:'Revelation’s letters are sent to how many churches?', choices:['5','7','10','12'], a:1, ref:'Revelation 2–3'},
+  {q:'Which island did John receive Revelation on?', choices:['Crete','Patmos','Cyprus','Malta'], a:1, ref:'Revelation 1:9'},
+  {q:'The Sermon on the Mount is primarily found in?', choices:['Luke 15','Matthew 5–7','John 3–4','Mark 13'], a:1, ref:'Matthew 5–7'},
+  {q:'Which parable teaches about loving one’s neighbor across boundaries?', choices:['Prodigal Son','Good Samaritan','Talents','Sower'], a:1, ref:'Luke 10:25–37'},
+  {q:'Which chapter has the parables of the lost sheep, coin, and son?', choices:['Luke 15','Matthew 25','Mark 4','John 10'], a:0, ref:'Luke 15'},
+  {q:'We believe the Bible is…', choices:['one of many sacred books','verbally inspired by God','outdated','only historical'], a:1, ref:'Core belief'},
+  {q:'God eternally exists as…', choices:['one person','three persons: Father, Son, Holy Spirit','two forces','many gods'], a:1, ref:'Core belief'},
+  {q:'Jesus Christ was crucified, buried, and…', choices:['forgotten','raised from the dead','hidden','replaced'], a:1, ref:'Core belief'},
+  {q:'Salvation is received through…', choices:['good deeds only','faith in Jesus Christ','church attendance only','heritage'], a:1, ref:'Core belief'},
+  {q:'The Holy Spirit…', choices:['inspires Scripture and empowers believers','is an impersonal force only','appeared briefly','was only for apostles'], a:0, ref:'Core belief'},
+  {q:'Christ will…', choices:['never return','return; there will be resurrection and judgment','only rule spiritually','end creation without judgment'], a:1, ref:'Core belief'},
+  {q:'Who interpreted dreams in Egypt and rose to power?', choices:['Moses','Joseph','Daniel','Nehemiah'], a:1, ref:'Genesis 41'},
+  {q:'Which feast in Esther commemorates Israel’s deliverance?', choices:['Passover','Purim','Booths','Trumpets'], a:1, ref:'Esther 9'},
+  {q:'Which prophet confronted David after his sin with Bathsheba?', choices:['Nathan','Gad','Samuel','Ahijah'], a:0, ref:'2 Samuel 12'},
+  {q:'Which king found the Book of the Law and reformed Judah?', choices:['Hezekiah','Josiah','Uzziah','Manasseh'], a:1, ref:'2 Kings 22–23'},
+  {q:'Which OT book most emphasizes “vanity of vanities”?', choices:['Job','Ecclesiastes','Proverbs','Psalms'], a:1, ref:'Ecclesiastes 1'},
+  {q:'Who was the strong Nazirite who fought the Philistines?', choices:['Samson','Samuel','Saul','Absalom'], a:0, ref:'Judges 13–16'},
+  {q:'Which prophet saw the Lord’s glory and a coal touch his lips?', choices:['Jeremiah','Isaiah','Ezekiel','Zechariah'], a:1, ref:'Isaiah 6'},
+  {q:'Where did Jesus’ first sign (water to wine) occur?', choices:['Nazareth','Cana','Bethany','Jericho'], a:1, ref:'John 2'},
+  {q:'Who climbed a sycamore tree to see Jesus?', choices:['Nicodemus','Zacchaeus','Bartimaeus','Matthew'], a:1, ref:'Luke 19:1–10'},
+  {q:'Which chapter contains the Great Commission?', choices:['Matthew 28','Mark 8','Luke 7','John 17'], a:0, ref:'Matthew 28:18–20'},
+  {q:'Who was shipwrecked on his way to Rome?', choices:['Peter','Paul','Barnabas','Silas'], a:1, ref:'Acts 27–28'},
+  {q:'Which letter focuses on supremacy of Christ over all things?', choices:['Colossians','Galatians','James','1 Peter'], a:0, ref:'Colossians 1'},
+  {q:'“Now faith is the substance of things hoped for” is in?', choices:['Hebrews 11:1','Romans 8:28','James 1:2','1 Peter 1:3'], a:0, ref:'Hebrews 11'},
+  {q:'“If we confess our sins, He is faithful and just to forgive us” is in?', choices:['1 John 1:9','Romans 10:9','James 5:16','Hebrews 10:22'], a:0, ref:'1 John 1:9'},
+  {q:'Which church was lukewarm?', choices:['Ephesus','Smyrna','Laodicea','Philadelphia'], a:2, ref:'Revelation 3:14–22'},
+  {q:'Which river did Israel cross miraculously after the Jordan parted?', choices:['Euphrates','Jordan','Tigris','Nile'], a:1, ref:'Joshua 3'},
+  {q:'Which prophet’s name means “Yahweh saves” and prophesied of the virgin birth?', choices:['Micah','Isaiah','Hosea','Zechariah'], a:1, ref:'Isaiah 7:14'},
+  {q:'Who wrote many Psalms and played the harp?', choices:['Solomon','Asaph','Moses','David'], a:3, ref:'Psalms'},
+  {q:'Which book records the return from exile led by Zerubbabel and later Ezra?', choices:['Ezra','Nehemiah','Haggai','Zechariah'], a:0, ref:'Ezra 1–7'},
+  {q:'Who denied Jesus three times and was later restored?', choices:['Peter','Thomas','Andrew','Philip'], a:0, ref:'Luke 22; John 21'},
+  {q:'Which apostle is known as the “son of encouragement”?', choices:['Barnabas','Silas','Mark','Titus'], a:0, ref:'Acts 4:36'},
+  {q:'Which letter tells believers to be “doers of the word, not hearers only”?', choices:['James','Jude','1 Peter','2 John'], a:0, ref:'James 1:22'},
+  {q:'“The wages of sin is death” appears in which epistle?', choices:['Romans','Galatians','Ephesians','Hebrews'], a:0, ref:'Romans 6:23'},
+  {q:'Which woman sat at Jesus’ feet and listened while her sister was busy?', choices:['Mary','Martha','Salome','Joanna'], a:0, ref:'Luke 10:38–42'},
+  {q:'Who asked, “What must I do to be saved?” in Philippi?', choices:['Jailer','Centurion','Herod','Festus'], a:0, ref:'Acts 16:30'},
+  {q:'Which prophet foretold the outpouring of the Spirit, quoted in Acts 2?', choices:['Joel','Amos','Habakkuk','Obadiah'], a:0, ref:'Joel 2:28–32; Acts 2'},
+  {q:'Who is called the “weeping prophet”?', choices:['Jeremiah','Ezekiel','Haggai','Zechariah'], a:0, ref:'Jeremiah'},
+  {q:'Which book ends the Old Testament?', choices:['Zechariah','Haggai','Malachi','Nahum'], a:2, ref:'OT order'},
+  {q:'Which Gospel contains the parable of the prodigal son?', choices:['Matthew','Mark','Luke','John'], a:2, ref:'Luke 15'},
+  {q:'Which epistle urges believers to contend for the faith once delivered?', choices:['Jude','2 Peter','1 John','Hebrews'], a:0, ref:'Jude 3'}
+];
+
+const ORDER_TASKS = [
+  { title: 'First 5 Books (Pentateuch)', correct: ['Genesis','Exodus','Leviticus','Numbers','Deuteronomy'] },
+  { title: 'Gospels in Order', correct: ['Matthew','Mark','Luke','John'] },
+  { title: 'Acts and the first four Pauline epistles', correct: ['Acts','Romans','1 Corinthians','2 Corinthians','Galatians'] },
+  { title: 'Wisdom Books (subset in order)', correct: ['Job','Psalms','Proverbs','Ecclesiastes'] },
+  { title: 'Prison Epistles Order (subset)', correct: ['Ephesians','Philippians','Colossians','Philemon'] },
+  { title: 'General Epistles (early subset)', correct: ['Hebrews','James','1 Peter','2 Peter','1 John'] }
+];
+
+const DOCTRINE_ITEMS = [
+  { text:'The Bible is God-inspired and our authoritative rule of faith.', tag:'Bible' },
+  { text:'One God eternally exists as Father, Son, and Holy Spirit.', tag:'God' },
+  { text:'Jesus Christ died and rose again; He saves and reigns.', tag:'Jesus/Salvation' },
+  { text:'The Holy Spirit empowers believers for life and service.', tag:'Holy Spirit' },
+  { text:'Christ will return; there will be resurrection and judgment.', tag:'Last Things' },
+  { text:'Salvation is by grace through faith, not earned by works.', tag:'Jesus/Salvation' },
+  { text:'Scripture is the final authority for doctrine and conduct.', tag:'Bible' }
+];
+
+const DOCTRINE_TAGS = ['Bible','God','Jesus/Salvation','Holy Spirit','Last Things'];
+
+let tab = 'quiz';
+let qIndex = 0;
+let score = 0;
+let answered = false;
+
+const els = {
+  gameArea: document.getElementById('gameArea'),
+  qNum: document.getElementById('qNum'),
+  qTotal: document.getElementById('qTotal'),
+  score: document.getElementById('score'),
+  nextBtn: document.getElementById('nextBtn'),
+  restartBtn: document.getElementById('restartBtn'),
+  progressBar: document.getElementById('progressBar'),
+  toast: document.getElementById('toast'),
+  hiScoreSlot: document.getElementById('hiScoreSlot')
+};
+
+const HISCORE_KEY = 'cwc_biblequest_hiscore_v2';
+function setHiScore(val){
+  const prev = Number(localStorage.getItem(HISCORE_KEY) || 0);
+  if(val>prev){ localStorage.setItem(HISCORE_KEY, String(val)); }
+  els.hiScoreSlot.textContent = 'High Score: ' + (localStorage.getItem(HISCORE_KEY) || '—');
+}
+setHiScore(0);
+
+function shuffle(arr){ return arr.map(v=>({v, r:Math.random()})).sort((a,b)=>a.r-b.r).map(o=>o.v); }
+function toast(msg){ els.toast.textContent = msg; els.toast.style.display='block'; setTimeout(()=>els.toast.style.display='none',1800); }
+function renderProgress(i, total){ els.progressBar.style.width = Math.round(((i)/total)*100) + '%'; }
+
+const SEEN_KEY = 'cwc_biblequest_seen_ids_v2';
+function pickQuizSet(n=10){
+  const total = QUIZ_BANK.length;
+  let seen = JSON.parse(localStorage.getItem(SEEN_KEY) || '[]').filter(i=>i<total);
+  if(seen.length > total - n){ seen = []; }
+  const unseen = [];
+  for(let i=0;i<total;i++){ if(!seen.includes(i)) unseen.push(i); }
+  const picks = shuffle(unseen).slice(0,n);
+  localStorage.setItem(SEEN_KEY, JSON.stringify(seen.concat(picks)));
+  return picks.map(i=>({ ...QUIZ_BANK[i] }));
+}
+
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    tab = btn.dataset.tab;
+    start();
+  });
+});
+
+document.getElementById('howToBtn').addEventListener('click',()=>document.getElementById('howTo').showModal());
+
+let quiz = [];
+function startQuiz(){
+  quiz = pickQuizSet(10);
+  qIndex = 0; score = 0; answered=false;
+  els.qTotal.textContent = quiz.length;
+  els.score.textContent = score;
+  renderProgress(0, quiz.length);
+  renderQuestion();
+}
+
+function renderQuestion(){
+  const item = quiz[qIndex];
+  els.qNum.textContent = qIndex+1;
+  const choices = shuffle(item.choices.map((c,i)=>({c,i})));
+  const opts = choices.map(({c,i})=>`
+    <button class="answer btn-outline w-full text-left justify-between" data-i="${i}">
+      <span>${c}</span> <i class="fa-solid fa-circle-dot opacity-60"></i>
+    </button>
+  `).join('');
+  els.gameArea.innerHTML = `
+    <div class="space-y-3">
+      <h3 class="text-xl font-extrabold text-[color:var(--color-primary)]">${item.q}</h3>
+      <div class="grid gap-2">${opts}</div>
+      <p class="text-xs text-slate-500 mt-2">Hint/Reference: ${item.ref}</p>
+    </div>
+  `;
+  els.nextBtn.classList.add('hidden');
+  answered=false;
+  document.querySelectorAll('.answer').forEach(btn=>btn.addEventListener('click', (e)=>onAnswer(e,item)));
+}
+
+function onAnswer(e,item){
+  if(answered) return;
+  answered = true;
+  const choice = Number(e.currentTarget.dataset.i);
+  const correct = item.a;
+  document.querySelectorAll('.answer').forEach((btn,i)=>{
+    if(i===correct){
+      btn.classList.remove('btn-outline');
+      btn.classList.add('btn-primary');
+    }else{
+      btn.classList.add('opacity-60');
+    }
+  });
+  if(choice===correct){
+    score += 10;
+    els.score.textContent = score;
+    toast('Nice! +10');
+  }else{
+    toast('Not quite—keep going!');
+  }
+  els.nextBtn.classList.remove('hidden');
+}
+
+els.nextBtn.addEventListener('click', ()=>{
+  qIndex++;
+  renderProgress(qIndex, quiz.length);
+  if(qIndex<quiz.length){
+    renderQuestion();
+  }else{
+    finishRound('quiz');
+  }
+});
+
+let orderSet = null;
+function startOrder(){
+  orderSet = shuffle(ORDER_TASKS)[0];
+  els.qTotal.textContent = 1; els.qNum.textContent = 1;
+  els.gameArea.innerHTML = `
+    <h3 class="text-xl font-extrabold text-[color:var(--color-primary)] mb-2">${orderSet.title}</h3>
+    <p class="text-sm text-slate-600 mb-3">Drag to arrange, left to right/top to bottom.</p>
+    <div id="orderPool" class="dropzone mb-3"></div>
+    <div class="flex gap-2 flex-wrap" id="pieces"></div>
+    <div class="mt-4 flex gap-2">
+      <button id="checkOrder" class="btn-primary"><i class="fa-solid fa-check"></i> Check</button>
+    </div>
+  `;
+  const scrambled = shuffle(orderSet.correct);
+  const pieces = document.getElementById('pieces');
+  scrambled.forEach(name=>{
+    const chip = document.createElement('div');
+    chip.textContent = name;
+    chip.className = 'chip draggable select-none';
+    chip.draggable = true;
+    chip.addEventListener('dragstart',ev=>{ ev.dataTransfer.setData('text/plain', name); ev.dataTransfer.setDragImage(chip, 10, 10); });
+    pieces.appendChild(chip);
+  });
+  const pool = document.getElementById('orderPool');
+  pool.addEventListener('dragover',ev=>ev.preventDefault());
+  pool.addEventListener('drop',ev=>{
+    ev.preventDefault();
+    const name = ev.dataTransfer.getData('text/plain');
+    const chip = Array.from(document.querySelectorAll('.draggable')).find(c=>c.textContent===name);
+    if(chip){ pool.appendChild(chip); }
+  });
+  document.getElementById('checkOrder').addEventListener('click', ()=>{
+    const attempt = Array.from(pool.children).map(c=>c.textContent);
+    if(attempt.length !== orderSet.correct.length){
+      toast('Place all books first.'); return;
+    }
+    let right = 0;
+    attempt.forEach((v,i)=>{ if(v===orderSet.correct[i]) right++; });
+    if(right===orderSet.correct.length){
+      score += 20; els.score.textContent = score; toast('Perfect! +20');
+    } else if(right>=Math.ceil(orderSet.correct.length/2)){
+      score += 10; els.score.textContent = score; toast('Close! +10');
+    } else {
+      toast('Keep studying—try again!');
+    }
+    finishRound('order');
+  });
+}
+
+function startDoctrine(){
+  els.qTotal.textContent = 5; els.qNum.textContent = 1;
+  const items = shuffle(DOCTRINE_ITEMS);
+  const tags = DOCTRINE_TAGS;
+  let current = 0;
+  let roundScore = 0;
+
+  function renderCard(){
+    const it = items[current];
+    els.gameArea.innerHTML = `
+      <div class="space-y-3">
+        <h3 class="text-lg font-bold text-[color:var(--color-primary)]">Match the belief:</h3>
+        <div class="card p-4">${it.text}</div>
+        <div class="grid sm:grid-cols-2 gap-2">
+          ${tags.map(t=>`<button class="btn-outline tagBtn" data-tag="${t}">${t}</button>`).join('')}
+        </div>
+      </div>
+    `;
+    document.querySelectorAll('.tagBtn').forEach(b=>b.addEventListener('click', e=>{
+      const pick = e.currentTarget.dataset.tag;
+      if(pick === it.tag){
+        roundScore += 4; toast('Good theology! +4');
+      }else{
+        toast('Not quite—review our beliefs.');
+      }
+      current++;
+      els.qNum.textContent = Math.min(current+1, items.length);
+      if(current<items.length){
+        renderCard();
+      }else{
+        score += roundScore; els.score.textContent = score;
+        finishRound('doctrine');
+      }
+    }));
+  }
+  renderCard();
+}
+
+function start(){
+  els.nextBtn.classList.add('hidden');
+  renderProgress(0, 1);
+  if(tab==='quiz'){ startQuiz(); }
+  if(tab==='order'){ startOrder(); }
+  if(tab==='doctrine'){ startDoctrine(); }
+}
+function finishRound(kind){
+  renderProgress(1,1);
+  setHiScore(score);
+  els.gameArea.innerHTML += `
+    <div class="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+      <p class="font-bold text-[color:var(--color-primary)]">Round complete!</p>
+      <p class="text-sm">Total Score: <strong>${score}</strong></p>
+      <div class="mt-2 flex gap-2 flex-wrap">
+        <button class="btn-primary" id="playAgain"><i class="fa-solid fa-rotate-right"></i> Play Again</button>
+        <button class="btn-outline" id="switchMode"><i class="fa-solid fa-shuffle"></i> Try Another Mode</button>
+      </div>
+    </div>
+  `;
+  document.getElementById('playAgain').addEventListener('click', start);
+  document.getElementById('switchMode').addEventListener('click', ()=>{
+    const modes = ['quiz','order','doctrine'];
+    tab = modes[(modes.indexOf(tab)+1)%modes.length];
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active', b.dataset.tab===tab));
+    start();
+  });
+}
+els.restartBtn.addEventListener('click', ()=>{ score=0; els.score.textContent=0; setHiScore(0); start(); });
+start();
+</script>
+</body>
+</html>

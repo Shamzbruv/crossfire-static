@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crossfire Worship Center</title>
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crossfire Worship Center</title>
+
+  <!-- Tailwind + Icons + Fonts (CDNs) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- SEO basics -->
+  <meta name="description" content="Crossfire Worship Center — a Bible-based Pentecostal church in fellowship and mission. Watch sermons, see events, send prayer requests, give online, and get connected." />
+  <link rel="canonical" href="https://example.org/" />
+
+  <!-- JSON-LD: Organization + Website + SearchAction -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "Crossfire Worship Center",
+        "url": "https://example.org/",
+        "logo": "https://crossfireworshipcenter.org/wp-content/uploads/2023/04/Church-Of-God-Logo-58x63.png",
+        "sameAs": [
+          "https://www.facebook.com/",
+          "https://www.youtube.com/"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "url": "https://example.org/",
+        "name": "Crossfire Worship Center",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://example.org/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --color-primary: #173262;
+      --color-secondary: #d09a2a;
+      --header-height: 72px;
+      --transition-smooth: all .24s ease;
+    }
+    html, body { scroll-behavior: smooth; font-family: 'Inter', sans-serif; }
+    .container { max-width: 1168px; }
+
+    .nav-scrolled { background: rgba(255,255,255,.92); backdrop-filter: blur(8px); box-shadow: 0 6px 24px rgba(0,0,0,.08); }
+
+    .nav-link { padding: 12px 10px; border-radius: .6rem; }
+    .nav-link:hover, .nav-link:focus { color: var(--color-secondary); outline: none; }
+    .btn-primary { display:inline-flex; align-items:center; gap:.5rem; background: var(--color-secondary); color: white; padding: 10px 18px; border-radius: 9999px; font-weight: 700; box-shadow: 0 6px 16px rgba(208,154,42,.3); transition: var(--transition-smooth); }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 10px 20px rgba(208,154,42,.34); }
+    .btn-outline { border:2px solid var(--color-secondary); color: var(--color-secondary); padding: 8px 16px; border-radius: 9999px; font-weight: 700; }
+    .btn-outline:hover { background: var(--color-secondary); color: white; }
+
+    .card { border-radius: 1rem; box-shadow: 0 10px 20px rgba(0,0,0,.06); transition: var(--transition-smooth); background: white; }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 14px 26px rgba(0,0,0,.1); }
+
+    /* Dropdown usability */
+    .menu-wrap { position: relative; }
+    .menu-panel {
+      position: absolute; left: 0; top: calc(100% + 10px);
+      background: white; border-radius: 14px; padding: 10px; width: 260px;
+      box-shadow: 0 18px 40px rgba(10,22,50,.12);
+      opacity: 0; transform: translateY(-4px); pointer-events: none;
+      transition: var(--transition-smooth);
+    }
+    .menu-wrap.open .menu-panel,
+    .menu-wrap:focus-within .menu-panel,
+    .menu-wrap:hover .menu-panel { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .menu-wrap::after { content:""; position:absolute; left:-10px; right:-10px; top:100%; height:16px; }
+
+    .live-dot { width:10px; height:10px; border-radius:9999px; background:#9CA3AF; }
+    .live-on { background:#ef4444; box-shadow:0 0 0 0 rgba(239,68,68,.7); animation:pulse 1.5s infinite; }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(239,68,68,.6); } 70% { box-shadow: 0 0 0 10px rgba(239,68,68,0); } 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0); } }
+
+    .search-input { border-radius: 9999px; padding: .6rem 1rem; border:1.5px solid #E5E7EB; outline: none; }
+    .search-input:focus { border-color: var(--color-secondary); box-shadow: 0 0 0 3px rgba(208,154,42,.2); }
+
+    /* Sermon thumbnails (avoid unavailable embeds) */
+    .sermon-thumb { position: relative; overflow:hidden; border-top-left-radius: 1rem; border-top-right-radius: 1rem; }
+    .sermon-thumb img { width:100%; height: 220px; object-fit: cover; display:block; }
+    .sermon-thumb::after { content:"\f04b"; font-family:"Font Awesome 6 Free"; font-weight:900; position:absolute; inset:auto auto 10px 10px; color:white; background: rgba(0,0,0,.6); width:36px; height:36px; display:grid; place-items:center; border-radius:9999px; }
+
+    /* Focus outline utility */
+    .focus-ring:focus { outline: 2px solid var(--color-secondary); outline-offset: 2px; }
+
+    /* Calendar view switch */
+    .calendar-view-select { border: 1px solid #E5E7EB; border-radius: 0.375rem; padding: 0.5rem; background: white; }
+  </style>
+  <script src="https://apis.google.com/js/api.js"></script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+  import { getAuth } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+  import { getStorage } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-storage.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCJVAU7S1rnADpXresR5BlqlfN-2V6XT5o",
+    authDomain: "crossfire-worship.firebaseapp.com",
+    projectId: "crossfire-worship",
+    storageBucket: "crossfire-worship.firebasestorage.app",
+    messagingSenderId: "939730668201",
+    appId: "1:939730668201:web:de04ce6ce5997481c4b7b8",
+    measurementId: "G-KEVELTC50T"
+  };
+  const app = initializeApp(firebaseConfig);
+  // Export globals if needed by other inline scripts
+  window._firebase = { app };
+</script>
+
+
+<style>html,body{height:100%}body{min-height:100vh}</style>
+</head>
+<body class="bg-gray-50">
+<!-- moved from file top (before <html>): -->
+<!DOCTYP
+  <!-- Under Construction Modal -->
+  <dialog id="ucModal" class="rounded-xl p-0 w-[92vw] max-w-md shadow-2xl">
+    <form method="dialog" class="p-6 space-y-5">
+      <div class="flex items-center justify-between">
+        <h3 class="text-xl font-bold text-[color:var(--color-primary)]">Members Area</h3>
+        <button value="cancel" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="flex flex-col items-center text-center gap-3 py-2">
+        <!-- Simple construction animation: spinning gear + bouncing cone -->
+        <svg width="120" height="120" viewBox="0 0 120 120" aria-hidden="true">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#f59e0b"/>
+              <stop offset="100%" stop-color="#ef4444"/>
+            </linearGradient>
+          </defs>
+          <!-- Gear -->
+          <g transform="translate(60,60)">
+            <g id="gear" style="transform-origin: 60px 60px;">
+              <circle cx="0" cy="0" r="22" fill="none" stroke="#9ca3af" stroke-width="8"/>
+              <g fill="#9ca3af">
+                <rect x="-4" y="-44" width="8" height="14" rx="2"/>
+                <rect x="-4" y="30" width="8" height="14" rx="2"/>
+                <rect x="-44" y="-4" width="14" height="8" rx="2"/>
+                <rect x="30" y="-4" width="14" height="8" rx="2"/>
+                <rect x="22" y="22" width="12" height="8" rx="2" transform="rotate(45)"/>
+                <rect x="-34" y="-34" width="12" height="8" rx="2" transform="rotate(45)"/>
+                <rect x="-34" y="26" width="12" height="8" rx="2" transform="rotate(-45)"/>
+                <rect x="22" y="-30" width="12" height="8" rx="2" transform="rotate(-45)"/>
+              </g>
+            </g>
+          </g>
+          <!-- Cone -->
+          <g transform="translate(60,100)">
+            <polygon points="-18,0 18,0 0,-36" fill="url(#g1)">
+              <animate attributeName="transform" dur="1.2s" values="translate(0,0); translate(0,-6); translate(0,0)" repeatCount="indefinite"/>
+            </polygon>
+            <rect x="-20" y="0" width="40" height="6" rx="3" fill="#e5e7eb" />
+          </g>
+          <animateTransform xlink:href="#gear" attributeName="transform" attributeType="XML" type="rotate" from="0 60 60" to="360 60 60" dur="2s" repeatCount="indefinite"/>
+        </svg>
+        <p class="text-gray-700 font-medium">Under construction — coming soon.</p>
+        <p class="text-xs text-gray-500">We’re building the new Members experience. Thanks for your patience.</p>
+      </div>
+      <div class="flex gap-2">
+        <button value="cancel" class="btn-outline w-full">Close</button>
+      </div>
+    </form>
+  </dialog>
+
+<!-- end moved content -->
+
+  <!-- Top info bar (driven by Events; hidden if none) -->
+  <div id="topInfoBar" class="bg-[color:var(--color-primary)] text-white text-xs hidden">
+    <div class="container mx-auto px-4 py-2 flex flex-wrap items-center gap-2">
+      <div id="topInfoPills" class="flex flex-wrap gap-2"></div>
+      <span class="ml-auto hidden md:inline-flex gap-3">
+        <a aria-label="Facebook" href="#" class="hover:text-yellow-300"><i class="fab fa-facebook-f"></i></a>
+        <a aria-label="YouTube" href="#" class="hover:text-yellow-300"><i class="fab fa-youtube"></i></a>
+      </span>
+    </div>
+  </div>
+
+  <!-- Header / Nav -->
+  <header id="siteHeader" class="sticky top-0 z-40 bg-white/90 backdrop-blur">
+    <div class="container mx-auto px-4" style="height:var(--header-height)">
+      <div class="h-full flex items-center gap-6">
+        <a href="#home" class="flex items-center gap-3 shrink-0">
+          <img loading="lazy" width="48" height="52" src="https://crossfireworshipcenter.org/wp-content/uploads/2023/04/Church-Of-God-Logo-58x63.png" alt="CWC Logo" class="h-8 w-auto">
+          <span class="font-extrabold text-[color:var(--color-primary)] text-lg leading-tight hidden sm:block">Crossfire<br/>Worship<br/>Center</span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex items-center gap-1 font-semibold text-[color:var(--color-primary)]">
+          <a class="nav-link" href="#home">Home</a>
+          <div class="menu-wrap" id="aboutMenu">
+            <button class="nav-link flex items-center gap-1 focus-ring" aria-haspopup="true" aria-expanded="false">About <i class="fa-solid fa-chevron-down text-[10px]"></i></button>
+            <ul class="menu-panel">
+            <li><a class="block px-3 py-3 rounded-lg hover:bg-blue-50" href="get_to_know_us.html">Get to Know Us</a></li>
+              <li><a class="block px-3 py-3 rounded-lg hover:bg-blue-50" href="declaration_of_faith.html">Declaration of Faith</a></li>
+              <li><a class="block px-3 py-3 rounded-lg hover:bg-blue-50" href="#about">Who We Are</a></li>
+              <li><a class="block px-3 py-3 rounded-lg hover:bg-blue-50" href="#ministries">Ministries</a></li>
+              <li><a class="block px-3 py-3 rounded-lg hover:bg-blue-50" href="#staff">Pastoral Staff</a></li>
+            </ul>
+          </div>
+          <a class="nav-link" href="#sermons">Sermons</a>
+          <a class="nav-link" href="#events">Events</a>
+          <a class="nav-link" href="#testimonials">Testimonials</a>
+          <a class="nav-link" href="#visitor">Visitor Info</a>
+          <a class="nav-link" href="#resources">Resources</a>
+          
+          <a class="nav-link" href="contact.html">Contact</a>
+          <a class="nav-link" href="gallery.html">Gallery</a>
+          <a id="liveNav" class="nav-link hidden items-center gap-2" href="#live">
+            <span id="liveDot" class="live-dot"></span><span>Live</span>
+          </a>
+        </nav>
+
+        <div class="hidden md:flex items-center gap-2 ml-auto">
+          <form id="siteSearch" role="search" aria-label="Site search" class="flex items-center gap-2">
+            <label class="sr-only" for="q">Search</label>
+            <input id="q" name="q" type="search" placeholder="Search site..." class="search-input w-56">
+            <button class="btn-outline text-sm" type="submit">Search</button>
+          </form>
+          <a class="btn-primary" href="#giving"><i class="fa-solid fa-heart"></i><span>Give</span></a>
+          <a class="btn-outline text-sm" href="Members/members.html">Members</a>
+        </div>
+
+        <!-- Mobile menu button -->
+        <button id="menuBtn" class="md:hidden text-2xl text-[color:var(--color-primary)] ml-auto" aria-expanded="false" aria-controls="mobileNav"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+
+    <!-- Mobile nav -->
+    <div id="mobileNav" class="md:hidden max-h-0 overflow-hidden transition-all duration-500 bg-white border-t">
+      <div class="px-4 py-3 grid grid-cols-2 gap-2 text-[color:var(--color-primary)] font-semibold">
+        <a href="#home" class="py-2">Home</a>
+        <a href="#about" class="py-2">About</a>
+        <a href="declaration_of_faith.html" class="py-2">Declaration of Faith</a>
+        <a href="#sermons" class="py-2">Sermons</a>
+        <a href="#events" class="py-2">Events</a>
+        <a href="#staff" class="py-2">Staff</a>
+        <a href="#testimonials" class="py-2">Testimonials</a>
+        <a href="#visitor" class="py-2">Visitor Info</a>
+        <a href="#resources" class="py-2">Resources</a>
+        <a id="liveNavMobile" href="#live" class="py-2 hidden">Live</a>
+        <a href="#giving" class="py-2">Give</a>
+        <a href="Members/members.html" class="py-2">Members</a>
+              <a href="contact.html" class="py-2">Contact</a>
+        <a href="gallery.html" class="py-2">Gallery</a>
+</div>
+      <div class="px-4 pb-4">
+        <form id="siteSearchMobile" role="search">
+          <input id="qMobile" name="q" type="search" placeholder="Search site..." class="search-input w-full">
+        </form>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="home" class="relative h-[76vh] md:h-[84vh] flex items-center">
+    <img loading="lazy" src="https://i0.wp.com/crossfireworshipcenter.org/wp-content/uploads/2023/04/IMG_5574.jpeg?fit=1600%2C1200&ssl=1"
+      alt="Worship background" class="absolute inset-0 w-full h-full object-cover" width="1600" height="1200">
+    <div class="absolute inset-0 bg-gradient-to-tr from-black/60 via-black/30 to-transparent"></div>
+    <div class="relative z-10 container mx-auto px-4 text-white">
+      <h1 class="text-4xl md:text-6xl font-extrabold">Welcome to Crossfire Worship Center</h1>
+      <p class="mt-4 max-w-2xl text-lg md:text-xl text-white/90">A Bible-based Pentecostal church where you can grow in faith and community.</p>
+      <div class="mt-8 flex flex-col sm:flex-row gap-3">
+        <a href="#visitor" class="btn-primary"><span>Plan a Visit</span></a>
+        <a href="#sermons" class="btn-outline text-white border-white hover:bg-white hover:text-[color:var(--color-primary)]">Watch Sermons</a>
+      
+        <a href="gallery.html" class="btn-outline text-white border-white hover:bg-white hover:text-[color:var(--color-primary)]">View Gallery</a></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="bg-white">
+    <div class="container mx-auto px-4 py-16 grid md:grid-cols-2 gap-8 items-start">
+      <div class="card p-8">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="bg-[color:var(--color-primary)] text-white p-3 rounded-full"><i class="fa-solid fa-eye"></i></div>
+          <h2 class="text-2xl font-extrabold text-[color:var(--color-primary)]">Our Vision</h2>
+        </div>
+        <p>Our vision is to become a biblically rooted and culturally sensitive church, where every member is actively involved in ministry. We pledge to make disciples and
+          nurture people into a relationship with the Lord. Where they sit at His feet, listen to His voice, grow to know Him intimately, and become like Him. Our vision will be accomplished when we share the Word, show the Word, teach the Word, and serve the Word. </p>
+      </div>
+      <div class="card p-8">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="bg-[color:var(--color-primary)] text-white p-3 rounded-full"><i class="fa-solid fa-bullseye"></i></div>
+          <h2 class="text-2xl font-extrabold text-[color:var(--color-primary)]">Our Mission</h2>
+        </div>
+        <p>Crossfire Worship Center is a movement that is committed to the authority of scripture for faith and direction. A fellowship whose worship will bring God’s power into the life of the church, and God’s power will extend through the lives of the believer. A church that is directed by the Holy Spirit, understanding that the
+          baptism of the Holy Spirit is a personal blessing and endowment of power to
+          witness and serve, in fulfilling the great commission. A church that loves all people and stands opposed to any actions or policies that discriminate against any people, group, or individual because of their race, color, or nationality. </p>
+      </div>
+    </div>
+  </section>
+
+    <!-- MINISTRIES -->
+    <section id="ministries" class="bg-gray-50">
+      <div class="container mx-auto px-4 py-16">
+        <h2 class="text-3xl font-extrabold text-[color:var(--color-primary)] text-center mb-10">Our Ministries</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <article class="card overflow-hidden"><a class="block group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[color:var(--color-secondary)]" href="men_ministry.html"><img loading="lazy" src="https://i0.wp.com/crossfireworshipcenter.org/wp-content/uploads/2024/12/1710575-custom.jpg?fit=1024%2C432&ssl=1" alt="Men's Ministry" class="w-full h-40 object-cover" width="1024" height="432">
+            <div class="p-5">
+              <h3 class="font-bold text-lg">Men's Ministry</h3>
+              <p class="text-sm text-gray-600 mt-1">Building godly men through fellowship, study, and service.</p>
+            </div></a></article>
+  <article class="card overflow-hidden"><a class="block group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[color:var(--color-secondary)]" href="women_ministry.html"><img loading="lazy" src="https://i0.wp.com/crossfireworshipcenter.org/wp-content/uploads/2024/12/group-photo-women.jpg?fit=1024%2C463&ssl=1" alt="Women's Ministry" class="w-full h-40 object-cover" width="1024" height="463">
+            <div class="p-5">
+              <h3 class="font-bold text-lg">Women's Ministry</h3>
+              <p class="text-sm text-gray-600 mt-1">Encouraging women to grow in faith and fellowship.</p>
+            </div></a></article>
+  <article class="card overflow-hidden"><a class="block group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[color:var(--color-secondary)]" href="youth_ministry.html"><img loading="lazy" src="https://i0.wp.com/crossfireworshipcenter.org/wp-content/uploads/2024/12/youth-ministry.jpg?fit=1024%2C419&ssl=1" alt="Youth Ministry" class="w-full h-40 object-cover" width="1024" height="419">
+            <div class="p-5">
+              <h3 class="font-bold text-lg">Youth Ministry</h3>
+              <p class="text-sm text-gray-600 mt-1">Equipping the next generation to live for Christ.</p>
+            </div></a></article>
+        </div>
+      </div>
+    </section>
+
+  <!-- SERMONS / MEDIA LIBRARY -->
+  <section id="sermons" class="bg-white">
+    <div class="container mx-auto px-4 py-16">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-3xl font-extrabold text-[color:var(--color-primary)]">Sermons &amp; Media Library</h2>
+        <a id="viewAllSermons" href="https://www.youtube.com/@crossfireworshipcentercwc6729/videos" target="_blank" class="text-[color:var(--color-primary)] hover:text-[color:var(--color-secondary)]">View all</a>
+      </div>
+      <div id="sermonGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Dynamic videos will load here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENTS CALENDAR -->
+  <section id="events" class="bg-gray-50">
+    <div class="container mx-auto px-4 py-16">
+      <h2 class="text-3xl font-extrabold text-[color:var(--color-primary)] mb-6">Events Calendar</h2>
+      <div class="grid lg:grid-cols-2 gap-6">
+        <!-- Upcoming list -->
+        <div class="card p-6">
+          <h3 class="font-bold text-lg mb-4">Upcoming</h3>
+          <ul id="upcoming-events-list" class="space-y-3" aria-live="polite">
+          </ul>
+        </div>
+        <!-- Calendar view switch and embed -->
+        <div class="card overflow-hidden">
+          <select id="calendarView" class="calendar-view-select mb-2">
+            <option value="MONTH">Month</option>
+            <option value="WEEK">Week</option>
+            <option value="DAY">Day</option>
+          </select>
+          <div class="calendar-wrapper">
+            <iframe id="calendarEmbed" title="Church Calendar" src="https://calendar.google.com/calendar/embed?src=crossfireworshipmanagement%40gmail.com&ctz=America%2FJamaica&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&showTz=0&mode=MONTH" style="border:0" class="w-full h-[420px]" loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Posters API config — paste your Apps Script Web App URL below after you deploy it
+    // Example: https://script.google.com/macros/s/AKfycbx.../exec
+    window.POSTERS_API_URL = "https://script.google.com/macros/s/AKfycbzWKM6GCaZ6gV4CBUL64AZTn_IbCdtUL0eYTv4JTVa7ZH-mrEIor_W6_D2kONjQ-VdBVQ/exec";
+  </script>
+  <!-- POSTERS & FLYERS -->
+  <section id="posters" class="bg-white mt-16">
+    <div class="container mx-auto px-4 py-16">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="bg-[color:var(--color-primary)] text-white p-3 rounded-full">
+          <i class="fa-solid fa-image"></i>
+        </div>
+        <h2 class="text-3xl font-extrabold text-[color:var(--color-primary)]">Posters &amp; Flyers</h2>
+      </div>
+      <div class="card overflow-hidden">
+        <div id="posters-empty" class="flex flex-col items-center justify-center text-center py-20 gap-2">
+          <i class="fa-solid fa-image text-4xl text-gray-400"></i>
+          <p class="text-gray-600 font-medium">No posters available yet. Please check back soon.</p>
+        </div>
+        <iframe id="postersEmbed" title="Posters &amp; Flyers" src="" style="border:0" class="w-full h-[560px] hidden" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Posters & Flyers: swap in Google Drive grid when items exist
+    (async function () {
+      const iframe = document.getElementById("postersEmbed");
+      const empty = document.getElementById("posters-empty");
+      const FALLBACK_FOLDER_ID = "1B4F7eay9xmibHMHaWeaNM91Dz82u7B1n";
+
+      try {
+        const r = await fetch(window.POSTERS_API_URL || "", { });
+        if (r.ok) {
+          const data = await r.json();
+          const count = Number(data?.count || 0);
+          const folderId = (data && data.folderId) ? String(data.folderId) : FALLBACK_FOLDER_ID;
+          if (count > 0 && iframe && empty) {
+            iframe.src = "https://drive.google.com/embeddedfolderview?id=" + encodeURIComponent(folderId) + "#grid";
+            empty.style.display = "none";
+            iframe.classList.remove("hidden");
+          }
+        }
+      } catch (_) {
+        // leave empty state visible
+      }
+    })();
+  </script>
+
+
+  <!-- PASTORAL STAFF -->
+  <section id="staff" class="py-16 md:py-24 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-10 md:mb-14">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900">Pastoral Network</h2>
+        <p class="text-slate-600 mt-2">Delmarva DC – South District Churches</p>
+      </div>
+
+      <!-- first 3 -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <article class="bg-white rounded-2xl shadow-sm ring-1 ring-black/5 hover:shadow-md transition p-6 flex items-center gap-4">
+          <img src="https://www.bethelbiblecollegecaribbean.edu.jm/images/article/bishop-oliver-subryan.jpg" alt="Bishop Oliver Subryan" class="w-20 h-20 rounded-full object-cover">
+          <div>
+            <h3 class="font-semibold text-slate-900">Pastor Ebenezer Church</h3>
+            <p class="text-slate-600 text-sm">Bishop Oliver Subryan</p>
+            <p class="text-slate-500 text-sm">7550 Buchanan Street, Hyattsville, MD 20784</p>
+          </div>
+        </article>
+        <article class="bg-white rounded-2xl shadow-sm ring-1 ring-black/5 hover:shadow-md transition p-6 flex items-center gap-4">
+          <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTniJ97sgsCemkedh4UBZkCGKsSxAcUgo-8yAByzCnISzg6F1x3" alt="Pastor Cynthia Watson" class="w-20 h-20 rounded-full object-cover">
+          <div>
+            <h3 class="font-semibold text-slate-900">Kingdom Solutions</h3>
+            <p class="text-slate-600 text-sm">Pastor Cynthia Watson</p>
+            <p class="text-slate-500 text-sm">1450 Mercantile Lane, Suite 227, Largo, MD 20774</p>
+          </div>
+        </article>
+        <article class="bg-white rounded-2xl shadow-sm ring-1 ring-black/5 hover:shadow-md transition p-6 flex items-center gap-4">
+          <img src="https://lifecommunitychurchonline.com/wp-content/uploads/2018/10/Pastor-Brian-Shepard.jpg" alt="Brian Shepard" class="w-20 h-20 rounded-full object-cover">
+          <div>
+            <h3 class="font-semibold text-slate-900">Life Community Church</h3>
+            <p class="text-slate-600 text-sm">Brian Shepard, M. Div.</p>
+            <p class="text-slate-500 text-sm">22512 Chancellors Run Road, Great Mills, MD 20634</p>
+          </div>
+        </article>
+      </div>
+
+      <!-- show more button -->
+      <div class="text-center mt-8">
+        <button id="toggleStaff" class="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-slate-300 bg-white text-slate-800 font-semibold shadow-sm hover:shadow transition">
+          <span>Show more</span>
+          <svg id="chev" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.085l3.71-3.855a.75.75 0 111.08 1.04l-4.24 4.41a.75.75 0 01-1.08 0L5.25 8.27a.75.75 0 01-.02-1.06z" clip-rule="evenodd"/></svg>
+        </button>
+      </div>
+
+      <!-- rest collapsed -->
+      <div id="moreStaff" class="hidden mt-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <article class="bg-white rounded-2xl shadow-sm ring-1 ring-black/5 hover:shadow-md transition p-6 flex items-center gap-4">
+            <img src="https://static.wixstatic.com/media/538d57_1b97a1d585a848c69a5667eebcba08ca~mv2.jpg/v1/fill/w_510,h_762,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/538d57_1b97a1d585a848c69a5667eebcba08ca~mv2.jpg" alt="Bishop Jonathon E. Zeigler II" class="w-20 h-20 rounded-full object-cover">
+            <div>
+              <h3 class="font-semibold text-slate-900">National Church of God</h3>
+              <p class="text-slate-600 text-sm">Bishop Jonathon E. Zeigler II</p>
+              <p class="text-slate-500 text-sm">6701 Bock Road, Fort Washington, MD 20744</p>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl shadow-sm ring-1 ring-black/5 hover:shadow-md transition p-6 flex items-center gap-4">
+            <img src="https://scontent.fmbj2-1.fna.fbcdn.net/v/t39.30808-6/488922897_1058064563035196_844528707468345318_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=_R8WbA1caJIQ7kNvwGaG9m0&_nc_oc=AdlsbCXvSo1C8J_Z8sqW0Wo-J_G9rxgD7FBafv8gcQePVOtekySRnf9NMTbRnesCqvI&_nc_zt=23&_nc_ht=scontent.fmbj2-1.fna&_nc_gid=sSego6qlLBH4ufQJiqYX3Q&oh=00_AfZS_otHLZKKhfbAdRfkNeopdsOG1xN636H1IuCF_BamWw&oe=68D2BF38" alt="Pastor Richard Harrison" class="w-20 h-20 rounded-full object-cover">
+            <div>
+              <h3 class="font-semibold text-slate-900">New Beginnings Church of God</h3>
+              <p class="text-slate-600 text-sm">Pastor Richard Harrison</p>
+              <p class="text-slate-500 text-sm">6310 Cipriano Road, Lanham, MD 20706</p>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl shadow-sm ring-1 ring-black/5 hover:shadow-md transition p-6 flex items-center gap-4">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBrv2b7Cn_XwOIGYGq-9f2M2otrkqgiZ8pFQ&s" alt="Pastor Sherise Webb" class="w-20 h-20 rounded-full object-cover">
+            <div>
+              <h3 class="font-semibold text-slate-900">Odenton Church of God</h3>
+              <p class="text-slate-600 text-sm">Pastor Sherise Webb</p>
+              <p class="text-slate-500 text-sm">1460 Berger Street, Odenton, MD 21113</p>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl shadow-sm ring-1 ring-black/5 hover:shadow-md transition p-6 flex items-center gap-4">
+            <img src="https://shepherdshousecog.com/wp-content/uploads/2024/03/IMG_0498-Edit-2-scaled-e1708523014998.jpeg" alt="Rev. Jennifer Porter Cox" class="w-20 h-20 rounded-full object-cover">
+            <div>
+              <h3 class="font-semibold text-slate-900">The Shepherd’s House Church of God</h3>
+              <p class="text-slate-600 text-sm">Rev. Jennifer Porter Cox</p>
+              <p class="text-slate-500 text-sm">2503 Larry Avenue, Fort Washington, MD 20744</p>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl shadow-sm ring-1 ring-black/5 hover:shadow-md transition p-6 flex items-center gap-4">
+            <img src="https://s3-media0.fl.yelpcdn.com/bphoto/NN5w7oq3C3JuF1TyjKFl9A/o.jpg" alt="Pastor John Miller" class="w-20 h-20 rounded-full object-cover">
+            <div>
+              <h3 class="font-semibold text-slate-900">Voice in the Wilderness</h3>
+              <p class="text-slate-600 text-sm">Pastor John Miller</p>
+              <p class="text-slate-500 text-sm">11850 Park Waldorf Lane, Suite 120, Waldorf, MD 20601</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function(){
+        const btn = document.getElementById('toggleStaff');
+        const more = document.getElementById('moreStaff');
+        const chev = document.getElementById('chev');
+        if(btn && more){
+          btn.addEventListener('click', () => {
+            const expanded = !more.classList.contains('hidden');
+            if(expanded){
+              more.classList.add('hidden');
+              btn.querySelector('span').textContent = 'Show more';
+              chev.style.transform = 'rotate(0deg)';
+            } else {
+              more.classList.remove('hidden');
+              btn.querySelector('span').textContent = 'Show less';
+              chev.style.transform = 'rotate(180deg)';
+            }
+          });
+        }
+      })();
+    </script>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" class="bg-gray-50">
+    <div class="container mx-auto px-4 py-16">
+      <h2 class="text-3xl font-extrabold text-[color:var(--color-primary)] text-center mb-10">Stories of Impact</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <blockquote class="card p-6 text-gray-700">
+          <p>“From my first visit, I felt at home. God is truly moving here.”</p>
+          <footer class="mt-3 text-sm text-gray-500">— Michael</footer>
+        </blockquote>
+        <blockquote class="card p-6 text-gray-700">
+          <p>“The sermons speak to everyday life and point us to Christ.”</p>
+          <footer class="mt-3 text-sm text-gray-500">— Jody</footer>
+        </blockquote>
+        <blockquote class="card p-6 text-gray-700">
+          <p>“Youth ministry helped our teens grow in faith and friendship.”</p>
+          <footer class="mt-3 text-sm text-gray-500">— Renee</footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISITOR INFO + PRAYER FORM -->
+  <section id="visitor" class="bg-white">
+    <div class="container mx-auto px-4 py-16">
+      <h2 class="text-3xl font-extrabold text-[color:var(--color-primary)] mb-6">Visitor Information</h2>
+      <div class="grid lg:grid-cols-2 gap-6">
+        <div class="card p-6 space-y-4">
+          <h3 class="font-bold text-lg">What to Expect</h3>
+          <p>Friendly people, Christ-centered worship, and practical teaching from the Bible. Dress as you are. Kids ministry available.</p>
+          <details class="p-4 border rounded">
+            <summary class="font-semibold">Where do I park?</summary>
+            <p class="mt-2 text-sm text-gray-600">Guest parking is near the main entrance—look for the “Welcome” flags.</p>
+          </details>
+          <details class="p-4 border rounded">
+            <summary class="font-semibold">How long is service?</summary>
+            <p class="mt-2 text-sm text-gray-600">About 90 minutes.</p>
+          </details>
+        </div>
+        <!-- Prayer Request Form -->
+        <form id="prayerForm" class="card p-6 space-y-4" novalidate>
+          <h3 class="font-bold text-lg">Prayer Request</h3>
+          <div>
+            <label for="name" class="block text-sm font-medium">Name</label>
+            <input id="name" name="name" type="text" required minlength="2" class="mt-1 w-full border rounded px-3 py-2" placeholder="Your name">
+            <p class="mt-1 text-xs text-red-600 hidden" data-error-for="name">Please enter your name (min 2 characters).</p>
+          </div>
+          <div>
+            <label for="email" class="block text-sm font-medium">Email</label>
+            <input id="email" name="email" type="email" required class="mt-1 w-full border rounded px-3 py-2" placeholder="you@example.com">
+            <p class="mt-1 text-xs text-red-600 hidden" data-error-for="email">Enter a valid email.</p>
+          </div>
+          <div>
+            <label for="message" class="block text-sm font-medium">Request</label>
+            <textarea id="message" name="message" required minlength="10" rows="4" class="mt-1 w-full border rounded px-3 py-2" placeholder="How can we pray for you?"></textarea>
+            <p class="mt-1 text-xs text-red-600 hidden" data-error-for="message">Please share at least 10 characters.</p>
+          </div>
+          <button class="btn-primary w-full" type="submit"><span>Send Request</span></button>
+          <p id="prayerSuccess" class="hidden text-green-700 text-sm">Thanks! We received your request.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- BIBLE QUEST (Guest-Friendly Game) -->
+  <section id="bible-quest" class="bg-gray-50">
+    <div class="container mx-auto px-4 py-16">
+      <div class="grid lg:grid-cols-3 gap-6 items-stretch">
+        <div class="lg:col-span-2 card p-6">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="bg-[color:var(--color-primary)] text-white p-3 rounded-full">
+              <i class="fa-solid fa-gamepad"></i>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-[color:var(--color-primary)]">
+              Bible Quest — Play & Learn
+            </h2>
+          </div>
+          <p class="text-gray-700 mt-1">
+            A quick, fun way to explore Scripture and our core beliefs. Great for guests, families, and youth—no sign-in required.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="bible_quest_expanded_v2.html" class="btn btn-primary inline-flex items-center gap-2">
+              <i class="fa-solid fa-play"></i>
+              <span>Play Now</span>
+            </a>
+            <a href="bible_quest_expanded_v2.html#how-to-play" class="btn btn-outline">
+              How it works
+            </a>
+          </div>
+        </div>
+
+        <div class="card p-0 overflow-hidden">
+          <a href="bible_quest_expanded_v2.html" class="block group h-full">
+            <div class="relative h-56 md:h-full w-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+              <div class="text-center px-6">
+                <div class="text-5xl md:text-6xl mb-3">🧠</div>
+                <div class="font-bold text-lg md:text-xl text-gray-800">Quick Bible Trivia</div>
+                <div class="text-gray-600 text-sm md:text-base">Tap to start &mdash; no sign-in</div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- RESOURCES -->
+  <section id="resources" class="bg-gray-50">
+    <div class="container mx-auto px-4 py-16">
+      <h2 class="text-3xl font-extrabold text-[color:var(--color-primary)] mb-6">Resources</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="card p-6 space-y-4">
+          <h3 class="font-bold">Devotionals</h3>
+          <ul class="list-disc list-inside text-gray-700">
+            <li><a class="text-[color:var(--color-primary)] hover:text-[color:var(--color-secondary)]" href="#" id="openModal-plan" class="cursor-pointer text-[color:var(--color-primary)] hover:text-[color:var(--color-secondary)]">30-Day Gospel Reading Plan (PDF)</a></li>
+            <li><a class="text-[color:var(--color-primary)] hover:text-[color:var(--color-secondary)]" href="#" id="openModal-prayer" class="cursor-pointer text-[color:var(--color-primary)] hover:text-[color:var(--color-secondary)]">Prayer Guide for Families</a></li>
+            <li><a class="text-[color:var(--color-primary)] hover:text-[color:var(--color-secondary)]" href="#" id="openModal-basics" class="cursor-pointer text-[color:var(--color-primary)] hover:text-[color:var(--color-secondary)]">New Believer Basics</a></li>
+          </ul>
+        </div>
+        <div class="card p-6 space-y-4">
+          <h3 class="font-bold">Study Materials</h3>
+          <ul class="list-disc list-inside text-gray-700">
+            <li><a class="text-[color:var(--color-primary)] hover:text-[color:var(--color-secondary)]" href="#" id="openModal-study" class="cursor-pointer text-[color:var(--color-primary)] hover:text-[color:var(--color-secondary)]">How to Study the Bible</a></li>
+            <li><a class="text-[color:var(--color-primary)] hover:text-[color:var(--color-secondary)]" href="#" id="openModal-path" class="cursor-pointer text-[color:var(--color-primary)] hover:text-[color:var(--color-secondary)]">Discipleship Pathway</a></li>
+            <li><a class="text-[color:var(--color-primary)] hover:text-[color:var(--color-secondary)]" href="#" id="openModal-faith" class="cursor-pointer text-[color:var(--color-primary)] hover:text-[color:var(--color-secondary)]">Our Declaration of Faith</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GIVING -->
+  <section id="giving" class="bg-gray-50">
+    <div class="container mx-auto px-4 py-16">
+      <h2 class="text-3xl font-extrabold text-[color:var(--color-primary)] mb-6">Online Giving</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="card p-6 space-y-4">
+          <p>Thank you for your generosity! Choose an option below:</p>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <a href="donate.integrated.html" class="btn-primary justify-center"><span>Tithe</span></a>
+            <a href="donate.integrated.html" class="btn-outline text-center">Offering</a>
+            <a href="donate.integrated.html" class="btn-outline text-center">Missions</a>
+            <a href="donate.integrated.html" class="btn-outline text-center">Building Fund</a>
+          </div>
+          <p class="text-xs text-gray-500">You will be redirected to our secure payment partner.</p>
+        </div>
+        <form class="card p-6 space-y-4" id="pledgeForm" novalidate>
+          <div class="bg-white rounded-2xl shadow-lg p-6">
+            <h3 class="font-bold text-xl mb-4">Make a Pledge</h3>
+            <form id="pledgeForm">
+              <div class="space-y-4">
+                <div>
+                  <label class="text-sm font-medium" for="pledgeName">Name</label>
+                  <input id="pledgeName" required class="mt-1 w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[color:var(--color-secondary)]" placeholder="Full name">
+                  <p class="mt-1 text-xs text-red-600 hidden" data-error-for="pledgeName">Please enter your name.</p>
+                </div>
+                <div>
+                  <label class="text-sm font-medium" for="pledgeEmail">Email</label>
+                  <input id="pledgeEmail" type="email" required class="mt-1 w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[color:var(--color-secondary)]" placeholder="you@example.com">
+                  <p class="mt-1 text-xs text-red-600 hidden" data-error-for="pledgeEmail">Enter a valid email.</p>
+                </div>
+                <div>
+                  <label class="text-sm font-medium" for="pledgeAmt">Amount (USD)</label>
+                  <input id="pledgeAmt" type="number" min="1" step="0.01" required class="mt-1 w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[color:var(--color-secondary)]" placeholder="50.00">
+                  <p class="mt-1 text-xs text-red-600 hidden" data-error-for="pledgeAmt">Enter a valid amount.</p>
+                </div>
+                <button class="btn-primary w-full" type="submit">
+                  <i class="fab fa-paypal mr-2"></i>
+                  <span>Pledge with PayPal</span>
+                </button>
+                <p id="pledgeSuccess" class="hidden text-green-700 text-sm">Thanks for your pledge! We'll be in touch.</p>
+              </div>
+            </form>
+          </div>
+          
+          <script>
+            document.getElementById('pledgeForm').addEventListener('submit', function(e) {
+              e.preventDefault();
+              
+              // Get form values
+              const name = document.getElementById('pledgeName').value.trim();
+              const email = document.getElementById('pledgeEmail').value.trim();
+              const amount = document.getElementById('pledgeAmt').value;
+              
+              // Simple validation
+              let isValid = true;
+              
+              if (!name) {
+                document.querySelector('[data-error-for="pledgeName"]').classList.remove('hidden');
+                isValid = false;
+              } else {
+                document.querySelector('[data-error-for="pledgeName"]').classList.add('hidden');
+              }
+              
+              if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                document.querySelector('[data-error-for="pledgeEmail"]').classList.remove('hidden');
+                isValid = false;
+              } else {
+                document.querySelector('[data-error-for="pledgeEmail"]').classList.add('hidden');
+              }
+              
+              if (!amount || amount < 1) {
+                document.querySelector('[data-error-for="pledgeAmt"]').classList.remove('hidden');
+                isValid = false;
+              } else {
+                document.querySelector('[data-error-for="pledgeAmt"]').classList.add('hidden');
+              }
+              
+              if (isValid) {
+                // Redirect to PayPal with pledge details
+                const paypalUrl = 'https://www.paypal.com/donate/?hosted_button_id=ND7VQSAEG9SZE';
+                
+                // You could also encode the pledge details as URL parameters
+                // Note: PayPal may not use custom parameters, but you could store them locally
+                localStorage.setItem('pledgeName', name);
+                localStorage.setItem('pledgeEmail', email);
+                localStorage.setItem('pledgeAmount', amount);
+                
+                // Redirect to PayPal
+                window.open(paypalUrl, '_blank');
+                
+                // Show success message
+                document.getElementById('pledgeSuccess').classList.remove('hidden');
+                
+                // Optional: Reset form
+                setTimeout(() => {
+                  document.getElementById('pledgeForm').reset();
+                  document.getElementById('pledgeSuccess').classList.add('hidden');
+                }, 5000);
+              }
+            });
+          </script>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-900 text-white">
+    <div class="container mx-auto px-4 py-12 grid md:grid-cols-4 gap-8">
+      <div>
+        <h3 class="text-xl font-bold mb-3">Crossfire Worship Center</h3>
+        <p class="text-sm text-gray-300">A Bible-based Pentecostal church where you can grow in faith and community.</p>
+      </div>
+      <div>
+        <h4 class="font-bold mb-3">Quick Links</h4>
+        <ul class="space-y-2 text-gray-300">
+          <li><a class="hover:text-yellow-400" href="#sermons">Sermons</a></li>
+          <li><a class="hover:text-yellow-400" href="#events">Events</a></li>
+          <li><a class="hover:text-yellow-400" href="#visitor">Plan a Visit</a></li>
+          <li><a class="hover:text-yellow-400" href="#resources">Resources</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold mb-3">Ministries</h4>
+        <ul class="space-y-2 text-gray-300">
+          <li><a class="hover:underline" href="men_ministry.html">Men</a> • <a class="hover:underline" href="women_ministry.html">Women</a> • <a class="hover:underline" href="youth_ministry.html">Youth</a> • <a class="hover:underline" href="praise_and_worship.html">Worship</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold mb-3">Stay Connected</h4>
+        <div class="flex gap-4 text-xl">
+          <a aria-label="Facebook" href="#" class="hover:text-yellow-400"><i class="fab fa-facebook-f"></i></a>
+          <a aria-label="YouTube" href="https://www.youtube.com/@crossfireworshipcentercwc6729" class="hover:text-yellow-400"><i class="fab fa-youtube"></i></a>
+        </div>
+        <a href="#giving" class="btn-primary mt-4 inline-flex"><span>Give Online</span></a>
+      </div>
+    </div>
+    <div class="border-t border-gray-700 text-center py-4 text-gray-400 text-sm">&copy; 2025 Crossfire Worship Center. All rights reserved.</div>
+  </footer>
+
+  <!-- Members Portal Modal -->
+  <dialog id="membersModal" class="rounded-xl p-0 w-[92vw] max-w-md shadow-2xl">
+    <form method="dialog" class="p-6 space-y-4">
+      <div class="flex items-center justify-between">
+        <h3 class="text-xl font-bold text-[color:var(--color-primary)]">Members Portal</h3>
+        <button value="cancel" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <p class="text-sm text-gray-600">Sign in to access members-only resources.</p>
+      <div>
+        <label class="text-sm font-medium" for="mEmail">Email</label>
+        <input id="mEmail" type="email" required class="mt-1 w-full border rounded px-3 py-2" placeholder="you@example.com">
+      </div>
+      <div>
+        <label class="text-sm font-medium" for="mPass">Password</label>
+        <input id="mPass" type="password" required minlength="6" class="mt-1 w-full border rounded px-3 py-2" placeholder="••••••••">
+      </div>
+      <button id="membersLoginBtn" class="btn-primary w-full" type="button"><span>Sign In</span></button>
+      <p class="text-xs text-gray-500">Demo only. Hook this up to your auth provider later.</p>
+    </form>
+  </dialog>
+
+  <!-- Toast -->
+  <div id="toast" role="status" aria-live="polite" class="fixed bottom-5 right-5 bg-gray-900 text-white px-4 py-2 rounded-lg opacity-0 translate-y-2 transition-all">Signed in! (Demo)</div>
+
+  <!-- Back to Top -->
+  <button id="toTop" class="fixed bottom-6 right-6 bg-[color:var(--color-primary)] text-white p-3 rounded-full shadow-lg hidden"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <script>
+    function fetchEvents() {
+      const apiKey = 'AIzaSyCumck3jTuf9r9PKK6rI23OvpDMXe9pzKc';
+      const calendarId = 'crossfireworshipmanagement@gmail.com';
+      const now = new Date();
+      const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const timeMin = todayStart.toISOString();
+      const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events?key=${apiKey}&timeMin=${timeMin}&maxResults=10&singleEvents=true&orderBy=startTime`;
+
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          const eventList = document.getElementById('upcoming-events-list');
+          eventList.innerHTML = '';
+          if (data.items && data.items.length > 0) {
+            data.items.slice(0, 3).forEach(event => {
+              const start = event.start.dateTime || event.start.date;
+              const date = new Date(start).toLocaleDateString('en-US', { month: 'short', day: '2-digit' });
+              const time = event.start.dateTime ? new Date(start).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) : 'All Day';
+              const title = event.summary || 'No Title';
+              const location = event.location ? ` • ${event.location}` : '';
+              const li = document.createElement('li');
+              li.className = 'flex items-start gap-3';
+              li.innerHTML = `<span class="px-3 py-1 rounded bg-yellow-100 text-yellow-800 text-sm" data-date="${new Date(start).toISOString().split('T')[0]}">${date}</span>
+                              <div><p class="font-semibold">${title}</p><p class="text-sm text-gray-600">${time}${location}</p></div>`;
+              eventList.appendChild(li);
+            });
+          } else {
+            eventList.innerHTML = '<li class="text-gray-600">No upcoming events.</li>';
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching events:', error);
+          document.getElementById('upcoming-events-list').innerHTML = '<li class="text-red-600">Error loading events. Please check later.</li>';
+        });
+    }
+
+    // Load events when the page is ready
+    document.addEventListener('DOMContentLoaded', fetchEvents);
+
+    // Calendar view switch
+    document.getElementById('calendarView').addEventListener('change', function() {
+      const mode = this.value;
+      const iframe = document.getElementById('calendarEmbed');
+      const baseSrc = "https://calendar.google.com/calendar/embed?src=crossfireworshipmanagement%40gmail.com&ctz=America%2FJamaica&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&showTz=0&mode=";
+      iframe.src = baseSrc + mode;
+    });
+  </script>
+
+  <script>
+    // ===== Config: fill these to enable YouTube features =====
+    const YT_API_KEY = "AIzaSyDK1zbZfaV-2kt2U54iyyBAgPeZbbOurK4";
+    const YT_CHANNEL_ID = "UCXt7qF2r6F82FDbQRCdZOpw";
+
+    // ===== Header scroll & Back-to-top =====
+    const header = document.getElementById('siteHeader');
+    const toTop = document.getElementById('toTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) header.classList.add('nav-scrolled'); else header.classList.remove('nav-scrolled');
+      if (window.scrollY > 350) { toTop.classList.remove('hidden'); } else { toTop.classList.add('hidden'); }
+    });
+    toTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+    // ===== Mobile menu =====
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    menuBtn.addEventListener('click', () => {
+      const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+      menuBtn.setAttribute('aria-expanded', String(!expanded));
+      mobileNav.style.maxHeight = mobileNav.style.maxHeight ? '' : mobileNav.scrollHeight + 'px';
+    });
+
+    // ===== About dropdown =====
+    const aboutMenu = document.getElementById('aboutMenu');
+    const aboutBtn = aboutMenu.querySelector('button');
+    let closeTO;
+    function openMenu(){ aboutMenu.classList.add('open'); aboutBtn.setAttribute('aria-expanded','true'); }
+    function closeMenu(){ aboutMenu.classList.remove('open'); aboutBtn.setAttribute('aria-expanded','false'); }
+    aboutBtn.addEventListener('click', (e)=>{ e.preventDefault(); aboutMenu.classList.toggle('open'); aboutBtn.setAttribute('aria-expanded', aboutMenu.classList.contains('open')); });
+    aboutMenu.addEventListener('mouseenter', ()=>{ clearTimeout(closeTO); openMenu(); });
+    aboutMenu.addEventListener('mouseleave', ()=>{ closeTO = setTimeout(closeMenu, 160); });
+    aboutBtn.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMenu(); });
+
+    // ===== Search (client-side) =====
+    function runSearch(term) {
+      term = term.trim().toLowerCase();
+      if (!term) return;
+      const sections = Array.from(document.querySelectorAll('section[id]'));
+      const found = sections.find(sec => (sec.id.toLowerCase().includes(term)) || (sec.textContent.toLowerCase().includes(term)));
+      if (found) found.scrollIntoView({ behavior: 'smooth' });
+    }
+    document.getElementById('siteSearch').addEventListener('submit', (e)=>{ e.preventDefault(); runSearch(document.getElementById('q').value); });
+    document.getElementById('siteSearchMobile').addEventListener('submit', (e)=>{ e.preventDefault(); runSearch(document.getElementById('qMobile').value); });
+
+    // ===== Members modal (demo auth) =====
+    const membersModal = document.getElementById('membersModal');
+    const openMembers = document.getElementById('openMembers');
+    const openMembersMobile = document.getElementById('openMembersMobile');
+    const loginBtn = document.getElementById('membersLoginBtn');
+    const toast = document.getElementById('toast');
+    function openModal(){ if(typeof membersModal.showModal === 'function'){ membersModal.showModal(); } else { membersModal.setAttribute('open',''); } }
+    openMembers.addEventListener('click', openModal);
+    openMembersMobile?.addEventListener('click', openModal);
+    loginBtn.addEventListener('click', ()=>{
+      const email = document.getElementById('mEmail').value.trim();
+      const pass = document.getElementById('mPass').value.trim();
+      const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && pass.length >= 6;
+      if (ok) { membersModal.close(); toast.classList.remove('opacity-0','translate-y-2'); setTimeout(()=>toast.classList.add('opacity-0','translate-y-2'), 1800); }
+    });
+
+    // ===== Events -> Top Info Bar + JSON-LD =====
+    const topInfoBar = document.getElementById('topInfoBar');
+    const topInfoPills = document.getElementById('topInfoPills');
+    const eventsList = document.getElementById('upcoming-events-list');
+
+    function updateTopBarFromEvents() {
+      const items = Array.from(eventsList?.querySelectorAll('li') || []);
+      topInfoPills.innerHTML = '';
+      if (!items.length) { topInfoBar.classList.add('hidden'); return; }
+      items.slice(0,3).forEach(li => {
+        const label = li.querySelector('span')?.textContent?.trim() || '';
+        const title = li.querySelector('p.font-semibold')?.textContent?.trim() || '';
+        const pill = document.createElement('span');
+        pill.className = "inline-flex items-center gap-2 bg-white/10 rounded-full px-3 py-1";
+        pill.innerHTML = `<i class="fa-solid fa-calendar-day"></i> ${title} • ${label}`;
+        topInfoPills.appendChild(pill);
+      });
+      topInfoBar.classList.remove('hidden');
+      renderEventsJsonLd();
+    }
+    updateTopBarFromEvents();
+    const obs = new MutationObserver(updateTopBarFromEvents);
+    if (eventsList) obs.observe(eventsList, {childList:true, subtree:true});
+
+    function renderEventsJsonLd() {
+      const items = Array.from(eventsList?.querySelectorAll('li') || []);
+      if (!items.length) return;
+      const events = items.map(li => {
+        const dateAttr = li.querySelector('span')?.getAttribute('data-date') || "";
+        const title = li.querySelector('p.font-semibold')?.textContent?.trim() || "";
+        return {
+          "@type": "Event",
+          "name": title,
+          "startDate": dateAttr || new Date().toISOString(),
+          "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+          "eventStatus": "https://schema.org/EventScheduled",
+          "location": {
+            "@type": "Place",
+            "name": "Crossfire Worship Center"
+          }
+        };
+      });
+      const scriptId = "event-jsonld";
+      document.getElementById(scriptId)?.remove();
+      const s = document.createElement('script');
+      s.id = scriptId; s.type = "application/ld+json";
+      s.textContent = JSON.stringify({"@context":"https://schema.org","@graph":events});
+      document.head.appendChild(s);
+    }
+
+    // ===== LIVE (YouTube) =====
+    const liveNav = document.getElementById('liveNav');
+    const liveNavMobile = document.getElementById('liveNavMobile');
+    const liveDot = document.getElementById('liveDot');
+    const liveSection = document.createElement('section'); // lazy create to keep DOM light
+    liveSection.id = 'live';
+    liveSection.className = 'bg-white hidden';
+    liveSection.innerHTML = `
+      <div class="container mx-auto px-4 py-16">
+        <div class="flex items-center gap-3 mb-4">
+          <span id="liveDotSection" class="live-dot"></span>
+          <h2 class="text-3xl font-extrabold text-[color:var(--color-primary)]">Live Stream</h2>
+        </div>
+        <div class="card overflow-hidden">
+          <div class="aspect-video">
+            <iframe id="liveFrame" class="w-full h-full" title="Live Service" loading="lazy" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>`;
+    document.body.appendChild(liveSection);
+
+    async function checkLive() {
+      if (!YT_API_KEY || !YT_CHANNEL_ID) {
+        liveNav?.classList.add('hidden'); liveNavMobile?.classList.add('hidden'); liveSection?.classList.add('hidden'); return;
+      }
+      try {
+        const url = new URL('https://www.googleapis.com/youtube/v3/search');
+        url.searchParams.set('part','snippet');
+        url.searchParams.set('channelId', YT_CHANNEL_ID);
+        url.searchParams.set('eventType','live');
+        url.searchParams.set('type','video');
+        url.searchParams.set('maxResults','1');
+        url.searchParams.set('key', YT_API_KEY);
+        const res = await fetch(url.toString());
+        const data = await res.json();
+        const isLive = Array.isArray(data.items) && data.items.length > 0;
+        const liveDotSection = document.getElementById('liveDotSection');
+        const liveFrame = document.getElementById('liveFrame');
+        if (isLive) {
+          const videoId = data.items[0].id.videoId;
+          liveNav?.classList.remove('hidden'); liveNavMobile?.classList.remove('hidden'); liveSection?.classList.remove('hidden');
+          liveDot?.classList.add('live-on'); liveDotSection?.classList.add('live-on');
+          liveFrame.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=0";
+        } else {
+          liveNav?.classList.add('hidden'); liveNavMobile?.classList.add('hidden'); liveSection?.classList.add('hidden');
+          liveDot?.classList.remove('live-on'); liveDotSection?.classList?.remove('live-on');
+          liveFrame?.removeAttribute('src');
+        }
+      } catch(e) {
+        liveNav?.classList.add('hidden'); liveNavMobile?.classList.add('hidden'); liveSection?.classList.add('hidden');
+      }
+    }
+    checkLive(); setInterval(checkLive, 120000);
+
+    // ===== SERMONS from YouTube (all recent videos) =====
+    async function loadSermons() {
+      if (!YT_API_KEY || !YT_CHANNEL_ID) return; // keep fallback if not set
+      try {
+        const grid = document.getElementById('sermonGrid');
+        const viewAll = document.getElementById('viewAllSermons');
+        const url = new URL('https://www.googleapis.com/youtube/v3/search');
+        url.searchParams.set('part','snippet');
+        url.searchParams.set('channelId', YT_CHANNEL_ID);
+        url.searchParams.set('q',''); // Empty to get all recent
+        url.searchParams.set('order','date');
+        url.searchParams.set('type','video');
+        url.searchParams.set('maxResults','3');
+        url.searchParams.set('key', YT_API_KEY);
+
+        const res = await fetch(url.toString());
+        const data = await res.json();
+        if (!Array.isArray(data.items) || !data.items.length) return;
+
+        grid.innerHTML = '';
+        data.items.forEach(item => {
+          const id = item.id.videoId;
+          const title = item.snippet.title;
+          const date = new Date(item.snippet.publishedAt).toLocaleDateString(undefined, {year:'numeric', month:'short', day:'numeric'});
+          const thumb = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+          const card = document.createElement('article');
+          card.className = 'card overflow-hidden';
+          card.innerHTML = `
+            <a class="sermon-thumb" href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener">
+              <img loading="lazy" src="${thumb}" alt="${title}" width="480" height="270">
+            </a>
+            <div class="p-5">
+              <h3 class="font-bold">${title}</h3>
+              <p class="text-sm text-gray-600 mt-1">${date}</p>
+            </div>`;
+          grid.appendChild(card);
+        });
+        viewAll.classList.remove('hidden');
+      } catch(e) { console.error('Error loading sermons:', e); }
+    }
+    loadSermons();
+
+    // ===== Forms validation =====
+    function showErr(id, show) { const el = document.querySelector('[data-error-for="'+id+'"]'); if (el) el.classList.toggle('hidden', !show); }
+    const prayerForm = document.getElementById('prayerForm');
+    prayerForm.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const name = document.getElementById('name');
+      const email = document.getElementById('email');
+      const message = document.getElementById('message');
+      let ok = true;
+      if (name.value.trim().length < 2) { showErr('name', true); ok = false; } else showErr('name', false);
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) { showErr('email', true); ok = false; } else showErr('email', false);
+      if (message.value.trim().length < 10) { showErr('message', true); ok = false; } else showErr('message', false);
+      if (ok) { document.getElementById('prayerSuccess').classList.remove('hidden'); prayerForm.reset(); }
+    });
+    const pledgeForm = document.getElementById('pledgeForm');
+    pledgeForm.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const fields = ['pledgeName','pledgeEmail','pledgeAmt'];
+      let ok = true;
+      fields.forEach(id=>{
+        const el = document.getElementById(id);
+        let valid = !!el.value.trim();
+        if (id==='pledgeEmail') valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value);
+        if (id==='pledgeAmt') valid = Number(el.value) >= 1;
+        document.querySelector('[data-error-for="'+id+'"]').classList.toggle('hidden', valid);
+        ok = ok && valid;
+      });
+      if (ok) { document.getElementById('pledgeSuccess').classList.remove('hidden'); pledgeForm.reset(); }
+    });
+  </script>
+
+<script type="module">
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+  const auth = getAuth();
+
+  function updateMembersLinks(dest) {
+    const links = document.querySelectorAll('a[href="Members/members.html"]');
+    links.forEach(a => a.setAttribute('href', dest));
+  }
+
+  // Default to members.html until auth state resolves
+  updateMembersLinks('Members/members.html');
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      updateMembersLinks('Members/members_dashboard.html');
+    } else {
+      updateMembersLinks('Members/members.html');
+    }
+  });
+</script>
+
+  <!-- Resources: Inline Modals -->
+  <div id="modalOverlay" class="fixed inset-0 bg-black/50 z-[999] hidden"></div>
+
+  <!-- Declaration of Faith Modal -->
+  <section id="modal-faith" class="fixed inset-0 z-[1000] hidden grid place-items-center p-4">
+    <div class="max-w-2xl w-full bg-white rounded-2xl shadow-2xl ring-1 ring-black/5">
+      <header class="px-6 pt-5 pb-3 flex items-start justify-between">
+        <h3 class="text-xl font-bold text-slate-900">Our Declaration of Faith (Church of God)</h3>
+        <button aria-label="Close" data-close class="text-slate-500 hover:text-slate-700 text-2xl leading-none">&times;</button>
+      </header>
+      <div class="px-6 pb-6 text-slate-700 space-y-3">
+        <p class="text-sm">A concise summary of core beliefs we hold in common with the Church of God movement.</p>
+        <ul class="list-disc pl-5 space-y-2 text-[15px]">
+          <li><strong>The Trinity:</strong> One God—Father, Son, and Holy Spirit—eternal and co‑equal.</li>
+          <li><strong>Scripture:</strong> The Bible is God‑inspired, the final authority for faith and life.</li>
+          <li><strong>Salvation:</strong> By grace through faith in Jesus Christ, evidenced by repentance and a new life.</li>
+          <li><strong>Sanctification:</strong> The Spirit sets believers apart for holy living and service.</li>
+          <li><strong>Ordinances:</strong> Water baptism and the Lord’s Supper as Christ commanded.</li>
+          <li><strong>Spirit‑Empowered Life:</strong> The Holy Spirit equips the church with gifts for ministry.</li>
+          <li><strong>Second Coming:</strong> Jesus will return; we live in hope and readiness.</li>
+        </ul>
+        <p class="text-sm text-slate-500">For the full statement, see our <a href="declaration_of_faith.html" class="text-blue-700 hover:underline">complete Declaration of Faith</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How to Study the Bible Modal -->
+  <section id="modal-study" class="fixed inset-0 z-[1000] hidden grid place-items-center p-4">
+    <div class="max-w-xl w-full bg-white rounded-2xl shadow-2xl ring-1 ring-black/5">
+      <header class="px-6 pt-5 pb-3 flex items-start justify-between">
+        <h3 class="text-xl font-bold text-slate-900">How to Study the Bible</h3>
+        <button aria-label="Close" data-close class="text-slate-500 hover:text-slate-700 text-2xl leading-none">&times;</button>
+      </header>
+      <div class="px-6 pb-6 text-slate-700 space-y-2 text-[15px]">
+        <ol class="list-decimal pl-5 space-y-1">
+          <li><strong>Pray:</strong> Ask the Spirit for understanding (Psalm 119:18).</li>
+          <li><strong>Observe:</strong> Who, what, when, where—read in context.</li>
+          <li><strong>Interpret:</strong> Compare Scripture with Scripture; note key words.</li>
+          <li><strong>Apply:</strong> What truth to believe, sin to confess, step to take.</li>
+          <li><strong>Share:</strong> Discuss with others; teach what you learn.</li>
+        </ol>
+        <p class="text-sm text-slate-500">Tip: Start with a gospel and a psalm each day.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Discipleship Pathway Modal -->
+  <section id="modal-path" class="fixed inset-0 z-[1000] hidden grid place-items-center p-4">
+    <div class="max-w-xl w-full bg-white rounded-2xl shadow-2xl ring-1 ring-black/5">
+      <header class="px-6 pt-5 pb-3 flex items-start justify-between">
+        <h3 class="text-xl font-bold text-slate-900">Discipleship Pathway</h3>
+        <button aria-label="Close" data-close class="text-slate-500 hover:text-slate-700 text-2xl leading-none">&times;</button>
+      </header>
+      <div class="px-6 pb-6 text-slate-700 space-y-2 text-[15px]">
+        <ol class="list-decimal pl-5 space-y-1">
+          <li><strong>Know God:</strong> Commit to Christ; be baptized.</li>
+          <li><strong>Grow Daily:</strong> Prayer, Scripture, community group.</li>
+          <li><strong>Serve Others:</strong> Use your gifts in a ministry team.</li>
+          <li><strong>Go &amp; Tell:</strong> Live on mission at home, work, and beyond.</li>
+        </ol>
+        <p class="text-sm text-slate-500">Ready to take a step? Visit our <a href="#ministries" class="text-blue-700 hover:underline">ministries</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Devotionals: Plan -->
+  <section id="modal-plan" class="fixed inset-0 z-[1000] hidden grid place-items-center p-4">
+    <div class="max-w-xl w-full bg-white rounded-2xl shadow-2xl ring-1 ring-black/5">
+      <header class="px-6 pt-5 pb-3 flex items-start justify-between">
+        <h3 class="text-xl font-bold text-slate-900">30‑Day Gospel Reading Plan</h3>
+        <button aria-label="Close" data-close class="text-slate-500 hover:text-slate-700 text-2xl leading-none">&times;</button>
+      </header>
+      <div class="px-6 pb-6 text-slate-700 space-y-2 text-[15px]">
+        <p>Read through Matthew, Mark, Luke, and John in 30 days.</p>
+        <ol class="list-decimal pl-5 space-y-1">
+          <li>Day 1–7: Gospel of <strong>Matthew</strong></li>
+          <li>Day 8–14: Gospel of <strong>Mark</strong></li>
+          <li>Day 15–22: Gospel of <strong>Luke</strong></li>
+          <li>Day 23–30: Gospel of <strong>John</strong></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- Devotionals: Prayer Guide -->
+  <section id="modal-prayer" class="fixed inset-0 z-[1000] hidden grid place-items-center p-4">
+    <div class="max-w-xl w-full bg-white rounded-2xl shadow-2xl ring-1 ring-black/5">
+      <header class="px-6 pt-5 pb-3 flex items-start justify-between">
+        <h3 class="text-xl font-bold text-slate-900">Prayer Guide for Families</h3>
+        <button aria-label="Close" data-close class="text-slate-500 hover:text-slate-700 text-2xl leading-none">&times;</button>
+      </header>
+      <div class="px-6 pb-6 text-slate-700 space-y-2 text-[15px]">
+        <ul class="list-disc pl-5 space-y-1">
+          <li><strong>Sunday:</strong> Worship &amp; surrender</li>
+          <li><strong>Monday:</strong> Work &amp; school</li>
+          <li><strong>Tuesday:</strong> Health &amp; protection</li>
+          <li><strong>Wednesday:</strong> Friends &amp; neighbors</li>
+          <li><strong>Thursday:</strong> Mission &amp; generosity</li>
+          <li><strong>Friday:</strong> Forgiveness &amp; unity</li>
+          <li><strong>Saturday:</strong> Rest &amp; gratitude</li>
+        </ul>
+        <p class="text-sm text-slate-500">Try reading a psalm aloud together each day.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Devotionals: New Believer Basics -->
+  <section id="modal-basics" class="fixed inset-0 z-[1000] hidden grid place-items-center p-4">
+    <div class="max-w-xl w-full bg-white rounded-2xl shadow-2xl ring-1 ring-black/5">
+      <header class="px-6 pt-5 pb-3 flex items-start justify-between">
+        <h3 class="text-xl font-bold text-slate-900">New Believer Basics</h3>
+        <button aria-label="Close" data-close class="text-slate-500 hover:text-slate-700 text-2xl leading-none">&times;</button>
+      </header>
+      <div class="px-6 pb-6 text-slate-700 space-y-2 text-[15px]">
+        <ol class="list-decimal pl-5 space-y-1">
+          <li><strong>Start with Jesus:</strong> Read John; talk to God daily.</li>
+          <li><strong>Join a church:</strong> Be baptized; commit to a group.</li>
+          <li><strong>Grow habits:</strong> Bible, prayer, generosity, service.</li>
+          <li><strong>Share your story:</strong> Tell someone what Jesus did.</li>
+        </ol>
+        <p class="text-sm text-slate-500">Want to talk with a pastor? Visit the <a href="#staff" class="text-blue-700 hover:underline">Pastoral Network</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function(){
+      // Map trigger -> modal
+      const map = {
+        'openModal-faith': 'modal-faith',
+        'openModal-study': 'modal-study',
+        'openModal-path':  'modal-path',
+        'openModal-plan':  'modal-plan',
+        'openModal-prayer':'modal-prayer',
+        'openModal-basics':'modal-basics'
+      };
+      const overlay = document.getElementById('modalOverlay');
+      function open(id){
+        document.getElementById(id)?.classList.remove('hidden');
+        overlay?.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeAll(){
+        Object.values(map).forEach(mid => document.getElementById(mid)?.classList.add('hidden'));
+        overlay?.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+      Object.entries(map).forEach(([btnId, modalId])=>{
+        const el = document.getElementById(btnId);
+        if(el){ el.addEventListener('click', (e)=>{ e.preventDefault(); open(modalId); }); }
+      });
+      document.addEventListener('click', (e)=>{
+        if (e.target.matches('#modalOverlay,[data-close]')) closeAll();
+      });
+      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeAll(); });
+    })();
+  </script>
+
+
+  <script>
+    // Redirect Pledge form to Zelle
+    (function(){
+      const form = document.getElementById('pledgeForm');
+      if(form){
+        form.addEventListener('submit', function(e){
+          e.preventDefault();
+          const name  = document.getElementById('pledgeName')?.value?.trim() || '';
+          const email = document.getElementById('pledgeEmail')?.value?.trim() || '';
+          const amt   = document.getElementById('pledgeAmt')?.value?.trim() || '';
+          // Basic check
+          if(!name || !email || !amt || isNaN(Number(amt)) || Number(amt) <= 0){
+            // show simple inline errors if you already have them
+            const msg = document.getElementById('pledgeSuccess');
+            if(msg){ msg.classList.remove('hidden'); msg.classList.add('text-red-700'); msg.textContent = 'Please fill out all fields with a valid amount.'; }
+            return;
+          }
+          // Build a helpful Zelle redirect (users complete payment in their bank app; this lands them on Zelle start page)
+          const zelleURL = 'https://www.zellepay.com/get-started' + 
+            '#pledge=' + encodeURIComponent(JSON.stringify({ name, email, amount: amt }));
+          window.location.href = zelleURL;
+        });
+      }
+    })();
+  </script>
+
+
+<script>
+(function(){
+  function showUC(e){
+    e.preventDefault();
+    const dlg = document.getElementById('ucModal');
+    if (dlg && typeof dlg.showModal === 'function') dlg.showModal();
+  }
+  // Attach to all header/footer "Members" links
+  const links = Array.from(document.querySelectorAll('a[href*="Members"], a[href*="members"]'));
+  links.forEach(a => {
+    // keep original href but intercept
+    a.addEventListener('click', showUC);
+  });
+})();
+</script>
+
+
+</body>
+</html>
